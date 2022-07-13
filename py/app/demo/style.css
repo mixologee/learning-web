@@ -1,0 +1,254 @@
+body {
+    font-family: helvetica, sans-serif, arial;
+    font-size: 1em;
+    color: #111;
+}
+.sidenav-button {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px 15px 11px 15px;
+    border: 1px solid #0071a6;
+    border-radius: 10px;
+    background: #00b7ff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#00b7ff), to(#0071a6));
+    background: -moz-linear-gradient(top, #00b7ff, #0071a6);
+    background: linear-gradient(to bottom, #00b7ff, #0071a6);
+    text-shadow: #004768 1px 1px 1px;
+    font: normal normal bold 15px arial;
+    color: #ffffff;
+    text-decoration: none;
+}
+.sidenav-button:hover,
+.sidenav-button:focus {
+    border: 1px solid #008dcf;
+    background: #00dcff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#00dcff), to(#0088c7));
+    background: -moz-linear-gradient(top, #00dcff, #0088c7);
+    background: linear-gradient(to bottom, #00dcff, #0088c7);
+    color: #ffffff;
+    text-decoration: none;
+}
+.sidenav-button:active {
+    background: #0071a6;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0071a6), to(#0071a6));
+    background: -moz-linear-gradient(top, #0071a6, #0071a6);
+    background: linear-gradient(to bottom, #0071a6, #0071a6);
+}
+.sidenav-button:before{
+    content:  "\0000a0";
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA6klEQVRIie2UPW7CQBSEv0GIAzg1nAG6tJHocotwLrgFnbkADVLOQO06QkiThrXX6x8ERiKKmMbz7J3Z97yjhReeDcXF23I1Q4z6JcboImxyzLnI18ewepyoD7YzScGraqHkAhukdo6OwDQY1ro1UJqn88WvozVdvGMCf9qNqW7FaaD+j6H207Ll15zmwd+KU5FvvkNRMxPamWspAtvlgaa8N0VwSVy1Yyu/O0WGD6xx1a4jdyfSru/65yl6F0yGGBr9FPl6H+o0RVtwxqAU0Z+iruQ86C5iARrFDac5iZ9tQ4LPjV1eeCp+Ab9oVnfZOLoOAAAAAElFTkSuQmCC") no-repeat left center transparent;
+    background-size: 100% 100%;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+#main {
+    transition: margin-left .5s;
+    padding:10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+h1 {
+    text-align: center;
+}
+
+#terminal-container {
+    width: 1000px;
+    height: 750px;
+    margin: 0 auto;
+    padding: 2px;
+}
+
+p.codeText {
+    color:blue;
+    background-color:lightgray;
+    font-family:"Lucida Console", Monaco, monospace;
+}
+
+.FixedHeightContainer
+{
+    float:right;
+    height: 750px;
+    width: 100%;
+}
+
+.LessonText
+{
+    height: 750px;
+    width: 40%;
+    float: left;
+    overflow:auto;
+}
+
+.TerminalWindow
+{
+    height: 750px;
+    width:60%;
+    margin-left: 3%;
+    overflow:hidden;
+}
+#lessonTextDiv{
+}
+.LessonTextiFrame
+{
+    width: 30%;
+    height: 745px;
+    position: absolute;
+    display: block;
+    top: 5;
+    left: 5;
+}
+
+/* GENERAL STYLE */
+#nav {
+  background: #005da0;
+  height: 50px;
+  width: 100%;
+}
+
+/* Category blue */
+.category{
+  padding: 0 10px;
+  position: relative;
+  background: #005da0;
+}
+
+/* highlight category items on hover */
+.category:hover {
+  background-color: #005da0;
+}
+
+/* float and size li's */
+#nav li {
+  float: left;
+  line-height: 50px;
+  margin-top:-1px;
+  border: 1px solid white;
+}
+
+/* default off */
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #fff;
+}
+
+/* a default off */
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* hover effect */
+li:hover{
+}
+
+/* GENERAL STYLE END */
+
+
+/* hide dropdowns */
+.dropdown {
+  display: none;
+  position: absolute;
+}
+
+
+.category:hover>.dropdown{
+  display: block;
+}
+
+/* #nav ul li > ul > li */
+.dropdown li{
+  position: relative;
+  background: #005da0;
+}
+.dropdown li a {
+  margin-top: -10px;
+  margin-bottom: -10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  background: #005da0;
+}
+.dropdown li.subcategory-item a {
+  margin-top: -10px;
+  margin-bottom: -10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  background: #005da0;
+}
+
+.dropdown-subcategory{
+  white-space:nowrap;
+}
+
+/* #nav ul li > ul > li > ul */
+ .dropdown-subcategory .dropdown{
+  display: none;
+  position: absolute;
+  left:100%;
+  top: 0%;
+  background: red;
+  text-align: center;
+  border: none;
+}
+
+.dropdown-subcategory .subcategory-item a{
+  background: #005da0;
+}
+
+.dropdown li:hover ul {
+  display: block;
+}
+
+
+#nav .subcategory-item {
+  background: #005da0;
+  color: #000;
+  position: relative;
+  width: 100%;
+}

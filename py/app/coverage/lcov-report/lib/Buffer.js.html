@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/Buffer.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">lib/</a> Buffer.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90.23% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>120/133</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">70.73% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>58/82</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">76.92% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>10/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90.08% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>118/131</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2897×</span>
+<span class="cline-any cline-yes">2897×</span>
+<span class="cline-any cline-yes">2897×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">146181×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2916×</span>
+<span class="cline-any cline-yes">1448×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1468×</span>
+<span class="cline-any cline-yes">1468×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1453×</span>
+<span class="cline-any cline-yes">1453×</span>
+<span class="cline-any cline-yes">1453×</span>
+<span class="cline-any cline-yes">34337×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2897×</span>
+<span class="cline-any cline-yes">2897×</span>
+<span class="cline-any cline-yes">2897×</span>
+<span class="cline-any cline-yes">2897×</span>
+<span class="cline-any cline-yes">2897×</span>
+<span class="cline-any cline-yes">2897×</span>
+<span class="cline-any cline-yes">2897×</span>
+<span class="cline-any cline-yes">2897×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">360×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">37×</span>
+<span class="cline-any cline-yes">37×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-yes">100×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-yes">2207×</span>
+<span class="cline-any cline-yes">2207×</span>
+<span class="cline-any cline-yes">2207×</span>
+<span class="cline-any cline-yes">120×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">120×</span>
+<span class="cline-any cline-yes">110×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2087×</span>
+<span class="cline-any cline-yes">132×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">132×</span>
+<span class="cline-any cline-yes">113×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-yes">90×</span>
+<span class="cline-any cline-yes">90×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">90×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5779×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5779×</span>
+<span class="cline-any cline-yes">5779×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5779×</span>
+<span class="cline-any cline-yes">56611×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var CircularList_1 = require("./utils/CircularList");
+exports.CHAR_DATA_ATTR_INDEX = 0;
+exports.CHAR_DATA_CHAR_INDEX = 1;
+exports.CHAR_DATA_WIDTH_INDEX = 2;
+exports.CHAR_DATA_CODE_INDEX = 3;
+exports.MAX_BUFFER_SIZE = 4294967295;
+var Buffer = (function () {
+    function Buffer(_terminal, _hasScrollback) {
+        this._terminal = _terminal;
+        this._hasScrollback = _hasScrollback;
+        this.clear();
+    }
+    Object.defineProperty(Buffer.prototype, "lines", {
+        get: function () {
+            return this._lines;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Buffer.prototype, "hasScrollback", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this._hasScrollback &amp;&amp; this.lines.maxLength &gt; this._terminal.rows;</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Buffer.prototype, "isCursorInViewport", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            var absoluteY = this.ybase + this.y;</span>
+<span class="cstat-no" title="statement not covered" >            var relativeY = absoluteY - this.ydisp;</span>
+<span class="cstat-no" title="statement not covered" >            return (relativeY &gt;= 0 &amp;&amp; relativeY &lt; this._terminal.rows);</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Buffer.prototype._getCorrectBufferLength = function (rows) {
+        if (!this._hasScrollback) {
+            return rows;
+        }
+        var correctBufferLength = rows + this._terminal.options.scrollback;
+        return correctBufferLength &gt; exports.MAX_BUFFER_SIZE ? <span class="branch-0 cbranch-no" title="branch not covered" >exports.MAX_BUFFER_SIZE </span>: correctBufferLength;
+    };
+    Buffer.prototype.fillViewportRows = function () {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this._lines.length === 0) {
+            var i = this._terminal.rows;
+            while (i--) {
+                this.lines.push(this._terminal.blankLine());
+            }
+        }
+    };
+    Buffer.prototype.clear = function () {
+        this.ydisp = 0;
+        this.ybase = 0;
+        this.y = 0;
+        this.x = 0;
+        this._lines = new CircularList_1.CircularList(this._getCorrectBufferLength(this._terminal.rows));
+        this.scrollTop = 0;
+        this.scrollBottom = this._terminal.rows - 1;
+        this.setupTabStops();
+    };
+    Buffer.prototype.resize = function (newCols, newRows) {
+        var newMaxLength = this._getCorrectBufferLength(newRows);
+        if (newMaxLength &gt; this._lines.maxLength) {
+            this._lines.maxLength = newMaxLength;
+        }
+        if (this._lines.length &gt; 0) {
+            if (this._terminal.cols &lt; newCols) {
+                var ch = [this._terminal.defAttr, ' ', 1, 32];
+                for (var i = 0; i &lt; this._lines.length; i++) {
+                    while (this._lines.get(i).length &lt; newCols) {
+                        this._lines.get(i).push(ch);
+                    }
+                }
+            }
+            var addToY = 0;
+            if (this._terminal.rows &lt; newRows) {
+                for (var y = this._terminal.rows; y &lt; newRows; y++) {
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if (this._lines.length &lt; newRows + this.ybase) {
+                        if (this.ybase &gt; 0 &amp;&amp; this._lines.length &lt;= this.ybase + this.y + addToY + 1) {
+                            this.ybase--;
+                            addToY++;
+                            if (this.ydisp &gt; 0) {
+                                this.ydisp--;
+                            }
+                        }
+                        else {
+                            this._lines.push(this._terminal.blankLine(undefined, undefined, newCols));
+                        }
+                    }
+                }
+            }
+            else {
+                for (var y = this._terminal.rows; y &gt; newRows; y--) {
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if (this._lines.length &gt; newRows + this.ybase) {
+                        if (this._lines.length &gt; this.ybase + this.y + 1) {
+                            this._lines.pop();
+                        }
+                        else {
+                            this.ybase++;
+                            this.ydisp++;
+                        }
+                    }
+                }
+            }
+            if (newMaxLength &lt; this._lines.maxLength) {
+                var amountToTrim = this._lines.length - newMaxLength;
+                if (amountToTrim &gt; 0) {
+                    this._lines.trimStart(amountToTrim);
+                    this.ybase = Math.max(this.ybase - amountToTrim, 0);
+                    this.ydisp = Math.max(this.ydisp - amountToTrim, 0);
+                }
+                this._lines.maxLength = newMaxLength;
+            }
+            this.x = Math.min(this.x, newCols - 1);
+            this.y = Math.min(this.y, newRows - 1);
+            if (addToY) {
+                this.y += addToY;
+            }
+            this.savedY = Math.min(this.savedY, newRows - 1);
+            this.savedX = Math.min(this.savedX, newCols - 1);
+            this.scrollTop = 0;
+        }
+        this.scrollBottom = newRows - 1;
+    };
+    Buffer.prototype.translateBufferLineToString = function (lineIndex, trimRight, startCol, endCol) {
+        if (startCol === void 0) { startCol = 0; }
+        if (endCol === void 0) { endCol = null; }
+        var lineString = '';
+        var line = this.lines.get(lineIndex);
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!line) {
+<span class="cstat-no" title="statement not covered" >            return '';</span>
+        }
+        var startIndex = startCol;
+        if (endCol === null) {
+            endCol = line.length;
+        }
+        var endIndex = endCol;
+        for (var i = 0; i &lt; line.length; i++) {
+            var char = line[i];
+            lineString += char[exports.CHAR_DATA_CHAR_INDEX];
+            if (char[exports.CHAR_DATA_WIDTH_INDEX] === 0) {
+                if (startCol &gt;= i) {
+                    startIndex--;
+                }
+                if (endCol &gt;= i) {
+                    endIndex--;
+                }
+            }
+            else {
+                if (char[exports.CHAR_DATA_CHAR_INDEX].length &gt; 1) {
+                    if (startCol &gt; i) {
+                        startIndex += char[exports.CHAR_DATA_CHAR_INDEX].length - 1;
+                    }
+                    if (endCol &gt; i) {
+                        endIndex += char[exports.CHAR_DATA_CHAR_INDEX].length - 1;
+                    }
+                }
+            }
+        }
+        if (trimRight) {
+            var rightWhitespaceIndex = lineString.search(/\s+$/);
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (rightWhitespaceIndex !== -1) {
+<span class="cstat-no" title="statement not covered" >                endIndex = Math.min(endIndex, rightWhitespaceIndex);</span>
+            }
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (endIndex &lt;= startIndex) {
+<span class="cstat-no" title="statement not covered" >                return '';</span>
+            }
+        }
+        return lineString.substring(startIndex, endIndex);
+    };
+    Buffer.prototype.setupTabStops = function (i) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (i != null) {
+<span class="cstat-no" title="statement not covered" >            if (!this.tabs[i]) {</span>
+<span class="cstat-no" title="statement not covered" >                i = this.prevStop(i);</span>
+            }
+        }
+        else {
+            this.tabs = {};
+            i = 0;
+        }
+        for (; i &lt; this._terminal.cols; i += this._terminal.options.tabStopWidth) {
+            this.tabs[i] = true;
+        }
+    };
+    Buffer.prototype.prevStop = <span class="fstat-no" title="function not covered" >function (x) {</span>
+<span class="cstat-no" title="statement not covered" >        if (x == null) {</span>
+<span class="cstat-no" title="statement not covered" >            x = this.x;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        while (!this.tabs[--x] &amp;&amp; x &gt; 0)</span>
+            ;
+<span class="cstat-no" title="statement not covered" >        return x &gt;= this._terminal.cols ? this._terminal.cols - 1 : x &lt; 0 ? 0 : x;</span>
+    };
+    Buffer.prototype.nextStop = function (x) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (x == null) {
+            x = this.x;
+        }
+        while (!this.tabs[++x] &amp;&amp; x &lt; this._terminal.cols)
+            ;
+        return x &gt;= this._terminal.cols ? this._terminal.cols - 1 : x &lt; 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >0 </span>: x;
+    };
+    return Buffer;
+}());
+exports.Buffer = Buffer;
+&nbsp;
+//# sourceMappingURL=Buffer.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 19:51:20 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

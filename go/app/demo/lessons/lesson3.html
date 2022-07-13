@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<p>Lesson 3 - Introducing Errors</p>
+<p>Let's get started....</p>
+<p>In the console, type: </p>
+<p class="codeText">
+cd ~/work</br>
+mkdir Errors</br>
+cd Errors</p>
+<p>Now we have our working directory. Now , lets create our code file: </p>
+<p class="codeText">vim main.go</p>
+<p>Type i to begin editing the file. Now, type the following:</p>
+<p  class="codeText">
+package main</br>
+</br>
+import (</br>
+        "fmt"</br>
+)</br>
+</br>
+func addition(x int, y int)int {</br>
+        return x + y</br>
+}</br>
+</br>
+func main() { </br>
+var s string = "three"</br>
+fmt.Println(addition(1,2))</br>
+}</p>
+<p>Now save the file by hitting ESC key typing: :wq!</p>
+<p>Now you can run your program by typing:</p>
+<p  class="codeText">
+go run main.go</p>
+<p>You should see an error complaining about string and int.</p>
+<p>To fix this, change the following:</p>
+<p class="codeText">var s string = "three"</p>
+<p>to</p>
+<p class="codeText">var s int = 3</p>
+<p>Save and rerun your code.</p>
+<p style="color:green;">Congratulations! You have started troubleshooting!</p>
+</body>
+</html>

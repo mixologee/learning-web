@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<p>Lesson 2 - Introducing Types</p>
+<p>Let's get started....</p>
+<p>In the console, type: </p>
+<p class="codeText">
+cd ~/work</br>
+mkdir IntroTypes</br>
+cd IntroTypes</p>
+<p>Now we have our working directory. Now , lets create our code file: </p>
+<p class="codeText">vim main.go</p>
+<p>Type i to begin editing the file. Now, type the following:</p>
+<p  class="codeText">
+package main</br>
+</br>
+import (</br>
+	"fmt"</br>
+)</br>
+</br>
+func sayHello(s string) string {</br>
+	return "Hello " + s</br>
+}</br>
+</br>
+func main() { </br>
+fmt.Println(sayHello("Your Name")) </br>
+}</p>
+<p>Now save the file by hitting ESC key typing: :wq!</p>
+<p>Now you can run your program by typing:</p>
+<p  class="codeText">
+go run main.go</p>
+<p>You should see Hello Your Name returned.</p>
+<p>You can also compile the code and run by command as follows:</p>
+<p  class="codeText">
+go build main.go</br>
+./main</p>
+<p style="color:green;">Congratulations! You have started working with strings and function calls!</p>
+</body>
+</html>
+

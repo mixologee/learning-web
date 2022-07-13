@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/utils/MouseHelper.test.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">lib/utils/</a> MouseHelper.test.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>46/46</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>8/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>46/46</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var jsdom = require("jsdom");
+var chai_1 = require("chai");
+var MouseHelper_1 = require("./MouseHelper");
+var TestUtils_test_1 = require("./TestUtils.test");
+var CHAR_WIDTH = 10;
+var CHAR_HEIGHT = 20;
+describe('MouseHelper.getCoords', function () {
+    var dom;
+    var window;
+    var document;
+    var mouseHelper;
+    var charMeasure;
+    beforeEach(function () {
+        dom = new jsdom.JSDOM('');
+        window = dom.window;
+        document = window.document;
+        charMeasure = new TestUtils_test_1.MockCharMeasure();
+        charMeasure.width = CHAR_WIDTH;
+        charMeasure.height = CHAR_HEIGHT;
+        var renderer = new TestUtils_test_1.MockRenderer();
+        renderer.dimensions = {
+            actualCellWidth: CHAR_WIDTH,
+            actualCellHeight: CHAR_HEIGHT
+        };
+        mouseHelper = new MouseHelper_1.MouseHelper(renderer);
+    });
+    describe('when charMeasure is not initialized', function () {
+        it('should return null', function () {
+            charMeasure = new TestUtils_test_1.MockCharMeasure();
+            chai_1.assert.equal(mouseHelper.getCoords({ pageX: 0, pageY: 0 }, document.createElement('div'), charMeasure, 1, 10, 10), null);
+        });
+    });
+    describe('when pageX/pageY are not supported', function () {
+        it('should return null', function () {
+            chai_1.assert.equal(mouseHelper.getCoords({ pageX: undefined, pageY: undefined }, document.createElement('div'), charMeasure, 1, 10, 10), null);
+        });
+    });
+    it('should return the cell that was clicked', function () {
+        var coords;
+        coords = mouseHelper.getCoords({ pageX: CHAR_WIDTH / 2, pageY: CHAR_HEIGHT / 2 }, document.createElement('div'), charMeasure, 1, 10, 10);
+        chai_1.assert.deepEqual(coords, [1, 1]);
+        coords = mouseHelper.getCoords({ pageX: CHAR_WIDTH, pageY: CHAR_HEIGHT }, document.createElement('div'), charMeasure, 1, 10, 10);
+        chai_1.assert.deepEqual(coords, [1, 1]);
+        coords = mouseHelper.getCoords({ pageX: CHAR_WIDTH, pageY: CHAR_HEIGHT + 1 }, document.createElement('div'), charMeasure, 1, 10, 10);
+        chai_1.assert.deepEqual(coords, [1, 2]);
+        coords = mouseHelper.getCoords({ pageX: CHAR_WIDTH + 1, pageY: CHAR_HEIGHT }, document.createElement('div'), charMeasure, 1, 10, 10);
+        chai_1.assert.deepEqual(coords, [2, 1]);
+    });
+    it('should ensure the coordinates are returned within the terminal bounds', function () {
+        var coords;
+        coords = mouseHelper.getCoords({ pageX: -1, pageY: -1 }, document.createElement('div'), charMeasure, 1, 10, 10);
+        chai_1.assert.deepEqual(coords, [1, 1]);
+        coords = mouseHelper.getCoords({ pageX: CHAR_WIDTH * 20, pageY: CHAR_HEIGHT * 20 }, document.createElement('div'), charMeasure, 1, 10, 10);
+        chai_1.assert.deepEqual(coords, [10, 10], 'coordinates should never come back as larger than the terminal');
+    });
+});
+&nbsp;
+//# sourceMappingURL=MouseHelper.test.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 19:51:20 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

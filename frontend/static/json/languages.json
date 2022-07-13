@@ -1,0 +1,16 @@
+[
+{	"name": "Go",
+	"env": "GOHOST",
+	"port": "4000"
+},
+{
+	"name": "Java",
+	"env": "JAVAHOST",
+	"port": "4001"
+},
+{
+        "name": "Python",
+        "env": "PYHOST",
+        "port": "4002"
+}
+]

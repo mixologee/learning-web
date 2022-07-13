@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/Linkifier.test.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">lib/</a> Linkifier.test.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">95.21% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>139/146</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">53.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">79.37% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>50/63</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.51% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>132/134</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">97×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var __extends = (this &amp;&amp; this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        (<span class="branch-1 cbranch-no" title="branch not covered" >{ __proto__: [] } instanceof Array </span>&amp;&amp; <span class="fstat-no" title="function not covered" ><span class="branch-2 cbranch-no" title="branch not covered" >function (d, b) {</span> <span class="cstat-no" title="statement not covered" >d.__proto__ = b; </span>})</span> ||
+<span class="fstat-no" title="function not covered" ><span class="branch-3 cbranch-no" title="branch not covered" >        function (d, b) {</span> <span class="cstat-no" title="statement not covered" >for (var p in b) <span class="cstat-no" title="statement not covered" >if (b.hasOwnProperty(p)) <span class="cstat-no" title="statement not covered" >d[p] = b[p]; </span></span></span>};</span>
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? <span class="branch-0 cbranch-no" title="branch not covered" >Object.create(b) </span>: (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var chai_1 = require("chai");
+var Linkifier_1 = require("./Linkifier");
+var TestUtils_test_1 = require("./utils/TestUtils.test");
+var CircularList_1 = require("./utils/CircularList");
+var TestLinkifier = (function (_super) {
+    __extends(TestLinkifier, _super);
+    function TestLinkifier(_terminal) {
+        var _this = _super.call(this, _terminal) || <span class="branch-1 cbranch-no" title="branch not covered" >this;</span>
+        Linkifier_1.Linkifier.TIME_BEFORE_LINKIFY = 0;
+        return _this;
+    }
+    Object.defineProperty(TestLinkifier.prototype, "linkMatchers", {
+        get: function () { return this._linkMatchers; },
+        enumerable: true,
+        configurable: true
+    });
+    TestLinkifier.prototype.linkifyRows = function () { _super.prototype.linkifyRows.call(this, 0, this._terminal.buffer.lines.length - 1); };
+    return TestLinkifier;
+}(Linkifier_1.Linkifier));
+var TestMouseZoneManager = (function () {
+    function TestMouseZoneManager() {
+        this.clears = 0;
+        this.zones = [];
+    }
+    TestMouseZoneManager.prototype.add = function (zone) {
+        this.zones.push(zone);
+    };
+    TestMouseZoneManager.prototype.clearAll = function () {
+        this.clears++;
+    };
+    return TestMouseZoneManager;
+}());
+describe('Linkifier', function () {
+    var terminal;
+    var linkifier;
+    var mouseZoneManager;
+    beforeEach(function () {
+        terminal = {
+            buffer: new TestUtils_test_1.MockBuffer(),
+            element: {}
+        };
+        terminal.buffer.lines = new CircularList_1.CircularList(20);
+        terminal.buffer.ydisp = 0;
+        linkifier = new TestLinkifier(terminal);
+        mouseZoneManager = new TestMouseZoneManager();
+    });
+    function stringToRow(text) {
+        var result = [];
+        for (var i = 0; i &lt; text.length; i++) {
+            result.push([0, text.charAt(i), 1, text.charCodeAt(i)]);
+        }
+        return result;
+    }
+    function addRow(text) {
+        terminal.buffer.lines.push(stringToRow(text));
+    }
+    function assertLinkifiesRow(rowText, linkMatcherRegex, links, done) {
+        addRow(rowText);
+        linkifier.registerLinkMatcher(linkMatcherRegex, <span class="fstat-no" title="function not covered" >function () {</span> });
+        linkifier.linkifyRows();
+        setTimeout(function () {
+            chai_1.assert.equal(mouseZoneManager.zones.length, links.length);
+            links.forEach(function (l, i) {
+                chai_1.assert.equal(mouseZoneManager.zones[i].x1, l.x + 1);
+                chai_1.assert.equal(mouseZoneManager.zones[i].x2, l.x + l.length + 1);
+                chai_1.assert.equal(mouseZoneManager.zones[i].y, terminal.buffer.lines.length);
+            });
+            done();
+        }, 0);
+    }
+    describe('before attachToDom', function () {
+        it('should allow link matcher registration', function (done) {
+            chai_1.assert.doesNotThrow(function () {
+                var linkMatcherId = linkifier.registerLinkMatcher(/foo/, <span class="fstat-no" title="function not covered" >function () {</span> });
+                chai_1.assert.isTrue(linkifier.deregisterLinkMatcher(linkMatcherId));
+                done();
+            });
+        });
+    });
+    describe('after attachToDom', function () {
+        beforeEach(function () {
+            linkifier.attachToDom(mouseZoneManager);
+        });
+        describe('link matcher', function () {
+            it('should match a single link', function (done) {
+                assertLinkifiesRow('foo', /foo/, [{ x: 0, length: 3 }], done);
+            });
+            it('should match a single link at the start of a text node', function (done) {
+                assertLinkifiesRow('foo bar', /foo/, [{ x: 0, length: 3 }], done);
+            });
+            it('should match a single link in the middle of a text node', function (done) {
+                assertLinkifiesRow('foo bar baz', /bar/, [{ x: 4, length: 3 }], done);
+            });
+            it('should match a single link at the end of a text node', function (done) {
+                assertLinkifiesRow('foo bar', /bar/, [{ x: 4, length: 3 }], done);
+            });
+            it('should match a link after a link at the start of a text node', function (done) {
+                assertLinkifiesRow('foo bar', /foo|bar/, [{ x: 0, length: 3 }, { x: 4, length: 3 }], done);
+            });
+            it('should match a link after a link in the middle of a text node', function (done) {
+                assertLinkifiesRow('foo bar baz', /bar|baz/, [{ x: 4, length: 3 }, { x: 8, length: 3 }], done);
+            });
+            it('should match a link immediately after a link at the end of a text node', function (done) {
+                assertLinkifiesRow('foo barbaz', /bar|baz/, [{ x: 4, length: 3 }, { x: 7, length: 3 }], done);
+            });
+            it('should not duplicate text after a unicode character (wrapped in a span)', function (done) {
+                assertLinkifiesRow('echo \'🔷foo\'', /foo/, [{ x: 8, length: 3 }], done);
+            });
+        });
+        describe('validationCallback', function () {
+            it('should enable link if true', function (done) {
+                addRow('test');
+                linkifier.registerLinkMatcher(/test/, function () { return done(); }, {
+                    validationCallback: function (url, cb) {
+                        chai_1.assert.equal(mouseZoneManager.zones.length, 0);
+                        cb(true);
+                        chai_1.assert.equal(mouseZoneManager.zones.length, 1);
+                        chai_1.assert.equal(mouseZoneManager.zones[0].x1, 1);
+                        chai_1.assert.equal(mouseZoneManager.zones[0].x2, 5);
+                        chai_1.assert.equal(mouseZoneManager.zones[0].y, 1);
+                        mouseZoneManager.zones[0].clickCallback({});
+                    }
+                });
+                linkifier.linkifyRows();
+            });
+            it('should validate the uri, not the row', function (done) {
+                addRow('abc test abc');
+                linkifier.registerLinkMatcher(/test/, <span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return done(); </span>}, {
+                    validationCallback: function (uri, cb) {
+                        chai_1.assert.equal(uri, 'test');
+                        done();
+                    }
+                });
+                linkifier.linkifyRows();
+            });
+            it('should disable link if false', function (done) {
+                addRow('test');
+                linkifier.registerLinkMatcher(/test/, <span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return chai_1.assert.fail(); </span>}, {
+                    validationCallback: function (url, cb) {
+                        chai_1.assert.equal(mouseZoneManager.zones.length, 0);
+                        cb(false);
+                        chai_1.assert.equal(mouseZoneManager.zones.length, 0);
+                    }
+                });
+                linkifier.linkifyRows();
+                setTimeout(function () { return done(); }, 10);
+            });
+            it('should trigger for multiple link matches on one row', function (done) {
+                addRow('test test');
+                var count = 0;
+                linkifier.registerLinkMatcher(/test/, <span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return chai_1.assert.fail(); </span>}, {
+                    validationCallback: function (url, cb) {
+                        count += 1;
+                        if (count === 2) {
+                            done();
+                        }
+                        cb(false);
+                    }
+                });
+                linkifier.linkifyRows();
+            });
+        });
+        describe('priority', function () {
+            it('should order the list from highest priority to lowest #1', function () {
+                var aId = linkifier.registerLinkMatcher(/a/, <span class="fstat-no" title="function not covered" >function () {</span> }, { priority: 1 });
+                var bId = linkifier.registerLinkMatcher(/b/, <span class="fstat-no" title="function not covered" >function () {</span> }, { priority: -1 });
+                chai_1.assert.deepEqual(linkifier.linkMatchers.map(function (lm) { return lm.id; }), [aId, bId]);
+            });
+            it('should order the list from highest priority to lowest #2', function () {
+                var aId = linkifier.registerLinkMatcher(/a/, <span class="fstat-no" title="function not covered" >function () {</span> }, { priority: -1 });
+                var bId = linkifier.registerLinkMatcher(/b/, <span class="fstat-no" title="function not covered" >function () {</span> }, { priority: 1 });
+                chai_1.assert.deepEqual(linkifier.linkMatchers.map(function (lm) { return lm.id; }), [bId, aId]);
+            });
+            it('should order items of equal priority in the order they are added', function () {
+                var aId = linkifier.registerLinkMatcher(/a/, <span class="fstat-no" title="function not covered" >function () {</span> }, { priority: 0 });
+                var bId = linkifier.registerLinkMatcher(/b/, <span class="fstat-no" title="function not covered" >function () {</span> }, { priority: 0 });
+                chai_1.assert.deepEqual(linkifier.linkMatchers.map(function (lm) { return lm.id; }), [aId, bId]);
+            });
+        });
+    });
+});
+&nbsp;
+//# sourceMappingURL=Linkifier.test.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 19:51:20 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

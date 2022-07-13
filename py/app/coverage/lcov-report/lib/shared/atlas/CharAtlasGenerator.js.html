@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/shared/atlas/CharAtlasGenerator.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">lib/shared/atlas/</a> CharAtlasGenerator.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.11% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>7/63</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.29% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>7/62</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Types_1 = require("./Types");
+var Browser_1 = require("../utils/Browser");
+<span class="fstat-no" title="function not covered" >function generateCharAtlas(context, canvasFactory, config) {</span>
+<span class="cstat-no" title="statement not covered" >    var cellWidth = config.scaledCharWidth + Types_1.CHAR_ATLAS_CELL_SPACING;</span>
+<span class="cstat-no" title="statement not covered" >    var cellHeight = config.scaledCharHeight + Types_1.CHAR_ATLAS_CELL_SPACING;</span>
+<span class="cstat-no" title="statement not covered" >    var canvas = canvasFactory(255 * cellWidth, (2 + 16) * cellHeight);</span>
+<span class="cstat-no" title="statement not covered" >    var ctx = canvas.getContext('2d', { alpha: config.allowTransparency });</span>
+<span class="cstat-no" title="statement not covered" >    ctx.fillStyle = config.colors.background;</span>
+<span class="cstat-no" title="statement not covered" >    ctx.fillRect(0, 0, canvas.width, canvas.height);</span>
+<span class="cstat-no" title="statement not covered" >    ctx.save();</span>
+<span class="cstat-no" title="statement not covered" >    ctx.fillStyle = config.colors.foreground;</span>
+<span class="cstat-no" title="statement not covered" >    ctx.font = getFont(config.fontWeight, config);</span>
+<span class="cstat-no" title="statement not covered" >    ctx.textBaseline = 'top';</span>
+<span class="cstat-no" title="statement not covered" >    for (var i = 0; i &lt; 256; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        ctx.save();</span>
+<span class="cstat-no" title="statement not covered" >        ctx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >        ctx.rect(i * cellWidth, 0, cellWidth, cellHeight);</span>
+<span class="cstat-no" title="statement not covered" >        ctx.clip();</span>
+<span class="cstat-no" title="statement not covered" >        ctx.fillText(String.fromCharCode(i), i * cellWidth, 0);</span>
+<span class="cstat-no" title="statement not covered" >        ctx.restore();</span>
+    }
+<span class="cstat-no" title="statement not covered" >    ctx.save();</span>
+<span class="cstat-no" title="statement not covered" >    ctx.font = getFont(config.fontWeightBold, config);</span>
+<span class="cstat-no" title="statement not covered" >    for (var i = 0; i &lt; 256; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        ctx.save();</span>
+<span class="cstat-no" title="statement not covered" >        ctx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >        ctx.rect(i * cellWidth, cellHeight, cellWidth, cellHeight);</span>
+<span class="cstat-no" title="statement not covered" >        ctx.clip();</span>
+<span class="cstat-no" title="statement not covered" >        ctx.fillText(String.fromCharCode(i), i * cellWidth, cellHeight);</span>
+<span class="cstat-no" title="statement not covered" >        ctx.restore();</span>
+    }
+<span class="cstat-no" title="statement not covered" >    ctx.restore();</span>
+<span class="cstat-no" title="statement not covered" >    ctx.font = getFont(config.fontWeight, config);</span>
+<span class="cstat-no" title="statement not covered" >    for (var colorIndex = 0; colorIndex &lt; 16; colorIndex++) {</span>
+<span class="cstat-no" title="statement not covered" >        if (colorIndex === 8) {</span>
+<span class="cstat-no" title="statement not covered" >            ctx.font = getFont(config.fontWeightBold, config);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var y = (colorIndex + 2) * cellHeight;</span>
+<span class="cstat-no" title="statement not covered" >        for (var i = 0; i &lt; 256; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            ctx.save();</span>
+<span class="cstat-no" title="statement not covered" >            ctx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >            ctx.rect(i * cellWidth, y, cellWidth, cellHeight);</span>
+<span class="cstat-no" title="statement not covered" >            ctx.clip();</span>
+<span class="cstat-no" title="statement not covered" >            ctx.fillStyle = config.colors.ansi[colorIndex];</span>
+<span class="cstat-no" title="statement not covered" >            ctx.fillText(String.fromCharCode(i), i * cellWidth, y);</span>
+<span class="cstat-no" title="statement not covered" >            ctx.restore();</span>
+        }
+    }
+<span class="cstat-no" title="statement not covered" >    ctx.restore();</span>
+<span class="cstat-no" title="statement not covered" >    if (!('createImageBitmap' in context) || Browser_1.isFirefox) {</span>
+<span class="cstat-no" title="statement not covered" >        if (canvas instanceof HTMLCanvasElement) {</span>
+<span class="cstat-no" title="statement not covered" >            return canvas;</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            return new Promise(<span class="fstat-no" title="function not covered" >function (r) {</span> <span class="cstat-no" title="statement not covered" >return r(canvas.transferToImageBitmap()); </span>});</span>
+        }
+    }
+<span class="cstat-no" title="statement not covered" >    var charAtlasImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);</span>
+<span class="cstat-no" title="statement not covered" >    var r = parseInt(config.colors.background.substr(1, 2), 16);</span>
+<span class="cstat-no" title="statement not covered" >    var g = parseInt(config.colors.background.substr(3, 2), 16);</span>
+<span class="cstat-no" title="statement not covered" >    var b = parseInt(config.colors.background.substr(5, 2), 16);</span>
+<span class="cstat-no" title="statement not covered" >    clearColor(charAtlasImageData, r, g, b);</span>
+<span class="cstat-no" title="statement not covered" >    return context.createImageBitmap(charAtlasImageData);</span>
+}
+exports.generateCharAtlas = generateCharAtlas;
+<span class="fstat-no" title="function not covered" >function clearColor(imageData, r, g, b) {</span>
+<span class="cstat-no" title="statement not covered" >    for (var offset = 0; offset &lt; imageData.data.length; offset += 4) {</span>
+<span class="cstat-no" title="statement not covered" >        if (imageData.data[offset] === r &amp;&amp;</span>
+            imageData.data[offset + 1] === g &amp;&amp;
+            imageData.data[offset + 2] === b) {
+<span class="cstat-no" title="statement not covered" >            imageData.data[offset + 3] = 0;</span>
+        }
+    }
+}
+<span class="fstat-no" title="function not covered" >function getFont(fontWeight, config) {</span>
+<span class="cstat-no" title="statement not covered" >    return fontWeight + " " + config.fontSize * config.devicePixelRatio + "px " + config.fontFamily;</span>
+}
+&nbsp;
+//# sourceMappingURL=CharAtlasGenerator.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 19:51:20 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

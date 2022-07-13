@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Json Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+        .red {
+            color:#ff0000;
+        }
+        .amber{
+            color:#ffd800;
+        }
+        .green{
+            color:#00ff00;
+        }
+    </style>
+</head>
+<body>
+    <div id="jsonresult"></div>
+    <input type="button" value="Load Json Result" id="btn" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btn").click(function () {
+                $.ajax({
+                    url: "/lessons/lessons.json",
+                    method: "POST",
+                    data: { id: 1 },
+                    success: function (data) {
+                        $(data).each(function (index, row) {
+                            $("#jsonresult").append("<span>" + row.name + "</span>||<span class=" + row.color + ">" + row.color + "</span>");
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
