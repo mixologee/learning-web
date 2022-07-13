@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/SoundManager.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">lib/</a> SoundManager.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">34.48% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>10/29</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">34.48% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>10/29</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">131×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DEFAULT_BELL_SOUND = 'data:audio/wav;base64,UklGRigBAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQBAADpAFgCwAMlBZoG/wdmCcoKRAypDQ8PbRDBEQQTOxRtFYcWlBePGIUZXhoiG88bcBz7HHIdzh0WHlMeZx51HmkeUx4WHs8dah0AHXwc3hs9G4saxRnyGBIYGBcQFv8U4RPAEoYRQBACD70NWwwHC6gJOwjWBloF7gOBAhABkf8b/qv8R/ve+Xf4Ife79W/0JfPZ8Z/wde9N7ijtE+wU6xvqM+lb6H7nw+YX5mrlxuQz5Mzje+Ma49fioeKD4nXiYeJy4pHitOL04j/jn+MN5IPkFOWs5U3mDefM55/ogOl36m7rdOyE7abuyu8D8Unyj/Pg9D/2qfcb+Yn6/vuK/Qj/lAAlAg==';
+var SoundManager = (function () {
+    function SoundManager(_terminal) {
+        this._terminal = _terminal;
+    }
+    SoundManager.prototype.playBellSound = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var audioContextCtor = window.AudioContext || window.webkitAudioContext;</span>
+<span class="cstat-no" title="statement not covered" >        if (!this._audioContext &amp;&amp; audioContextCtor) {</span>
+<span class="cstat-no" title="statement not covered" >            this._audioContext = new audioContextCtor();</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (this._audioContext) {</span>
+<span class="cstat-no" title="statement not covered" >            var bellAudioSource_1 = this._audioContext.createBufferSource();</span>
+<span class="cstat-no" title="statement not covered" >            var context_1 = this._audioContext;</span>
+<span class="cstat-no" title="statement not covered" >            this._audioContext.decodeAudioData(this._base64ToArrayBuffer(this._removeMimeType(this._terminal.options.bellSound)), <span class="fstat-no" title="function not covered" >function (buffer) {</span></span>
+<span class="cstat-no" title="statement not covered" >                bellAudioSource_1.buffer = buffer;</span>
+<span class="cstat-no" title="statement not covered" >                bellAudioSource_1.connect(context_1.destination);</span>
+<span class="cstat-no" title="statement not covered" >                bellAudioSource_1.start(0);</span>
+            });
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            console.warn('Sorry, but the Web Audio API is not supported by your browser. Please, consider upgrading to the latest version');</span>
+        }
+    };
+    SoundManager.prototype._base64ToArrayBuffer = <span class="fstat-no" title="function not covered" >function (base64) {</span>
+<span class="cstat-no" title="statement not covered" >        var binaryString = window.atob(base64);</span>
+<span class="cstat-no" title="statement not covered" >        var len = binaryString.length;</span>
+<span class="cstat-no" title="statement not covered" >        var bytes = new Uint8Array(len);</span>
+<span class="cstat-no" title="statement not covered" >        for (var i = 0; i &lt; len; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            bytes[i] = binaryString.charCodeAt(i);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return bytes.buffer;</span>
+    };
+    SoundManager.prototype._removeMimeType = <span class="fstat-no" title="function not covered" >function (dataURI) {</span>
+<span class="cstat-no" title="statement not covered" >        var splitUri = dataURI.split(',');</span>
+<span class="cstat-no" title="statement not covered" >        return splitUri[1];</span>
+    };
+    return SoundManager;
+}());
+exports.SoundManager = SoundManager;
+&nbsp;
+//# sourceMappingURL=SoundManager.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 19:51:20 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

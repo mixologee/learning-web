@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/addons/fit/fit.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">lib/addons/fit/</a> fit.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">31.03% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/29</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">31.03% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/29</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+<span class="fstat-no" title="function not covered" >function proposeGeometry(term) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!term.element.parentElement) {</span>
+<span class="cstat-no" title="statement not covered" >        return null;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    var parentElementStyle = window.getComputedStyle(term.element.parentElement);</span>
+<span class="cstat-no" title="statement not covered" >    var parentElementHeight = parseInt(parentElementStyle.getPropertyValue('height'));</span>
+<span class="cstat-no" title="statement not covered" >    var parentElementWidth = Math.max(0, parseInt(parentElementStyle.getPropertyValue('width')));</span>
+<span class="cstat-no" title="statement not covered" >    var elementStyle = window.getComputedStyle(term.element);</span>
+<span class="cstat-no" title="statement not covered" >    var elementPadding = {</span>
+        top: parseInt(elementStyle.getPropertyValue('padding-top')),
+        bottom: parseInt(elementStyle.getPropertyValue('padding-bottom')),
+        right: parseInt(elementStyle.getPropertyValue('padding-right')),
+        left: parseInt(elementStyle.getPropertyValue('padding-left'))
+    };
+<span class="cstat-no" title="statement not covered" >    var elementPaddingVer = elementPadding.top + elementPadding.bottom;</span>
+<span class="cstat-no" title="statement not covered" >    var elementPaddingHor = elementPadding.right + elementPadding.left;</span>
+<span class="cstat-no" title="statement not covered" >    var availableHeight = parentElementHeight - elementPaddingVer;</span>
+<span class="cstat-no" title="statement not covered" >    var availableWidth = parentElementWidth - elementPaddingHor - term.viewport.scrollBarWidth;</span>
+<span class="cstat-no" title="statement not covered" >    var geometry = {</span>
+        cols: Math.floor(availableWidth / term.renderer.dimensions.actualCellWidth),
+        rows: Math.floor(availableHeight / term.renderer.dimensions.actualCellHeight)
+    };
+<span class="cstat-no" title="statement not covered" >    return geometry;</span>
+}
+exports.proposeGeometry = proposeGeometry;
+<span class="fstat-no" title="function not covered" >function fit(term) {</span>
+<span class="cstat-no" title="statement not covered" >    var geometry = proposeGeometry(term);</span>
+<span class="cstat-no" title="statement not covered" >    if (geometry) {</span>
+<span class="cstat-no" title="statement not covered" >        if (term.rows !== geometry.rows || term.cols !== geometry.cols) {</span>
+<span class="cstat-no" title="statement not covered" >            term.renderer.clear();</span>
+<span class="cstat-no" title="statement not covered" >            term.resize(geometry.cols, geometry.rows);</span>
+        }
+    }
+}
+exports.fit = fit;
+function apply(terminalConstructor) {
+    terminalConstructor.prototype.proposeGeometry = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return proposeGeometry(this);</span>
+    };
+    terminalConstructor.prototype.fit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        fit(this);</span>
+    };
+}
+exports.apply = apply;
+&nbsp;
+//# sourceMappingURL=fit.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 19:51:20 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

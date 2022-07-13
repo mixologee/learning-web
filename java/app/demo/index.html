@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Learning Java @ BlackRock</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" href="/build/xterm.css" />
+        <link rel="stylesheet" href="/build/addons/fullscreen/fullscreen.css" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script>var lessons;</script>
+        <script>
+            function menuClick(obj) {
+                var lessonName = obj.innerHTML
+                for(l in lessons)
+                {
+                   if(lessons[l].name == lessonName)
+                   {
+                        $("#lessonTextDiv").empty();
+                        $("#lessonTextDiv").append(lessons[l].text);
+                   }
+                }
+                closeNav();
+            }
+
+            $(document).ready(function(){
+
+              fetch('/lessondata').then(function(response) {
+                  if(response.ok) {
+                    response.json().then(function(json) {
+                      lessons = json;
+                      console.log("Got the data");
+                      populateMenu();
+                    });
+                  } else {
+                    console.log('Network request for lessons.json failed with response ' + response.status +': ' + response.statusText);
+                  }
+              });
+
+              function populateMenu() {
+                  console.log("Entered populateMenu()");
+                  // grab the UI elements that we need to manipulate
+                  var menu = document.querySelector('#listNav');
+                  if(lessons.length === 0) {
+                      var para = document.createElement('p');
+                      para.textContent = 'No lessons to display!';
+                      menu.appendChild(para);
+                    // for each product we want to display, pass its product object to fetchBlob()
+                    } else {
+                      console.log("We think we have data");
+
+                        var topics = [];
+
+                        $.each(lessons, function(index, value) {
+                            if ($.inArray(value.topic, topics) === -1) {
+                                topics.push(value.topic);                            }
+                        });
+
+                      for(var x = 0; x < topics.length; x++)
+                      {
+                       console.log(topics[x]);
+                       var topicLink = document.createElement('li');
+                       topicLink.innerHTML += '<a href="#" data-toggle="collapse" data-target="#topic'+x+'">'+topics[x]+'</a>'
+                       var topicLinkList = document.createElement('ol');
+                       topicLinkList.setAttribute('id',"topic"+x);
+                        topicLinkList.setAttribute('class','collapse out');
+                       for(var i = 0; i < lessons.length; i++) {
+                         console.log(lessons[i].name);
+                         if(lessons[i].topic == topics[x])
+                         {
+                          var topicSubLink = document.createElement('li');
+                          //topicSubLink.setAttribute('class', 'subcategory-item');
+                          var lessonLink = document.createElement('a');
+                          lessonLink.innerHTML = lessons[i].name;
+                          lessonLink.setAttribute('href', '#');
+                          lessonLink.setAttribute('class', 'lessonButton');
+                          lessonLink.setAttribute('onclick', 'menuClick(this)');
+                          topicSubLink.appendChild(lessonLink);
+                          topicLinkList.appendChild(topicSubLink);
+                         }
+                      }
+                      menu.appendChild(topicLink);
+                      menu.appendChild(topicLinkList);
+                     }
+                   }
+                }
+             });
+             function openNav() {
+                  document.getElementById("mySidenav").style.width = "250px";
+                  //document.getElementById("main").style.marginLeft = "250px";
+                  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+              }
+
+              function closeNav() {
+                  document.getElementById("mySidenav").style.width = "0";
+                  //document.getElementById("main").style.marginLeft= "50";
+                  document.body.style.backgroundColor = "white";
+              }
+        </script>
+    </head>
+    <body>
+        <a class="sidenav-button" href="#" onclick="openNav()">Menu</a>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <ul id="listNav">
+        </ul>
+</div>
+
+        <div class="FixedHeightContainer" id="main">
+          <div class="LessonText" class="border border-secondary">
+                <div id="lessonTextDiv" class="boreder border-secondary"> </div>
+         </div>
+          <div class="TerminalWindow">
+                <div id="terminal-container"></div>
+        </div>
+        <div style="display: none;">
+          <h2>Actions</h2>
+          <p>
+            <label>Find next <input id="find-next"/></label>
+            <label>Find previous <input id="find-previous"/></label>
+          </p>
+        </div>
+        <div style="display: none;">
+          <h2>Options</h2>
+          <p>
+            <label><input type="checkbox" id="option-cursor-blink"> cursorBlink</label>
+          </p>
+          <p>
+            <label><input type="checkbox" id="option-mac-option-is-meta"> macOptionIsMeta</label>
+          </p>
+          <p>
+            <label>
+              cursorStyle
+              <select id="option-cursor-style">
+                <option value="block">block</option>
+                <option value="underline">underline</option>
+                <option value="bar">bar</option>
+              </select>
+            </label>
+          </p>
+          <p>
+            <label>
+              bellStyle
+              <select id="option-bell-style">
+                <option value="">none</option>
+                <option value="sound">sound</option>
+                <option value="visual">visual</option>
+                <option value="both">both</option>
+              </select>
+            </label>
+          </p>
+          <p>
+            <label>scrollback <input type="number" id="option-scrollback" value="1000" /></label>
+          </p>
+          <p>
+            <label>tabStopWidth <input type="number" id="option-tabstopwidth" value="8" /></label>
+          </p>
+          <div style="display: none;">
+                <h3>Size</h3>
+            <div>
+              <div style="display: inline-block; margin-right: 16px;">
+                <label for="cols">Columns</label>
+                <input type="number" id="cols" />
+              </div>
+              <div style="display: inline-block; margin-right: 16px;">
+                <label for="rows">Rows</label>
+                <input type="number" id="rows" />
+              </div>
+              <div style="display: inline-block; margin-right: 16px;">
+                <label for="padding">Padding</label>
+                <input type="number" id="padding" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3>Accessibility</h3>
+            <p>
+              <label><input type="checkbox" id="option-screen-reader-mode"> screenReaderMode</label>
+            </p>
+        </div>
+        <script src="dist/bundle.js" defer ></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    </body>
+</html>

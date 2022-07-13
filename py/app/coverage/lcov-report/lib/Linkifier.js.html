@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/Linkifier.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">lib/</a> Linkifier.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">78.63% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>92/117</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">63.16% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>36/57</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">73.91% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>17/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">79.28% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>88/111</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">147×</span>
+<span class="cline-any cline-yes">147×</span>
+<span class="cline-any cline-yes">147×</span>
+<span class="cline-any cline-yes">147×</span>
+<span class="cline-any cline-yes">147×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">147×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var __extends = (this &amp;&amp; this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        (<span class="branch-1 cbranch-no" title="branch not covered" >{ __proto__: [] } instanceof Array </span>&amp;&amp; <span class="fstat-no" title="function not covered" ><span class="branch-2 cbranch-no" title="branch not covered" >function (d, b) {</span> <span class="cstat-no" title="statement not covered" >d.__proto__ = b; </span>})</span> ||
+<span class="fstat-no" title="function not covered" ><span class="branch-3 cbranch-no" title="branch not covered" >        function (d, b) {</span> <span class="cstat-no" title="statement not covered" >for (var p in b) <span class="cstat-no" title="statement not covered" >if (b.hasOwnProperty(p)) <span class="cstat-no" title="statement not covered" >d[p] = b[p]; </span></span></span>};</span>
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? <span class="branch-0 cbranch-no" title="branch not covered" >Object.create(b) </span>: (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Types_1 = require("./Types");
+var MouseZoneManager_1 = require("./input/MouseZoneManager");
+var EventEmitter_1 = require("./EventEmitter");
+var Linkifier = (function (_super) {
+    __extends(Linkifier, _super);
+    function Linkifier(_terminal) {
+        var _this = _super.call(this) || this;
+        _this._terminal = _terminal;
+        _this._linkMatchers = [];
+        _this._nextLinkMatcherId = 0;
+        _this._rowsToLinkify = {
+            start: null,
+            end: null
+        };
+        return _this;
+    }
+    Linkifier.prototype.attachToDom = function (mouseZoneManager) {
+        this._mouseZoneManager = mouseZoneManager;
+    };
+    Linkifier.prototype.linkifyRows = function (start, end) {
+        var _this = this;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!this._mouseZoneManager) {
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this._rowsToLinkify.start === null) {
+            this._rowsToLinkify.start = start;
+            this._rowsToLinkify.end = end;
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            this._rowsToLinkify.start = Math.min(this._rowsToLinkify.start, start);</span>
+<span class="cstat-no" title="statement not covered" >            this._rowsToLinkify.end = Math.max(this._rowsToLinkify.end, end);</span>
+        }
+        this._mouseZoneManager.clearAll(start, end);
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (this._rowsTimeoutId) {
+<span class="cstat-no" title="statement not covered" >            clearTimeout(this._rowsTimeoutId);</span>
+        }
+        this._rowsTimeoutId = setTimeout(function () { return _this._linkifyRows(); }, Linkifier.TIME_BEFORE_LINKIFY);
+    };
+    Linkifier.prototype._linkifyRows = function () {
+        this._rowsTimeoutId = null;
+        for (var i = this._rowsToLinkify.start; i &lt;= this._rowsToLinkify.end; i++) {
+            this._linkifyRow(i);
+        }
+        this._rowsToLinkify.start = null;
+        this._rowsToLinkify.end = null;
+    };
+    Linkifier.prototype.registerLinkMatcher = function (regex, handler, options) {
+        if (options === void 0) { options = {}; }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!handler) {
+<span class="cstat-no" title="statement not covered" >            throw new Error('handler must be defined');</span>
+        }
+        var matcher = {
+            id: this._nextLinkMatcherId++,
+            regex: regex,
+            handler: handler,
+            matchIndex: options.matchIndex,
+            validationCallback: options.validationCallback,
+            hoverTooltipCallback: options.tooltipCallback,
+            hoverLeaveCallback: options.leaveCallback,
+            willLinkActivate: options.willLinkActivate,
+            priority: options.priority || 0
+        };
+        this._addLinkMatcherToList(matcher);
+        return matcher.id;
+    };
+    Linkifier.prototype._addLinkMatcherToList = function (matcher) {
+        if (this._linkMatchers.length === 0) {
+            this._linkMatchers.push(matcher);
+            return;
+        }
+        for (var i = this._linkMatchers.length - 1; i &gt;= 0; i--) {
+            if (matcher.priority &lt;= this._linkMatchers[i].priority) {
+                this._linkMatchers.splice(i + 1, 0, matcher);
+                return;
+            }
+        }
+        this._linkMatchers.splice(0, 0, matcher);
+    };
+    Linkifier.prototype.deregisterLinkMatcher = function (matcherId) {
+        for (var i = 0; i &lt; this._linkMatchers.length; i++) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (this._linkMatchers[i].id === matcherId) {
+                this._linkMatchers.splice(i, 1);
+                return true;
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        return false;</span>
+    };
+    Linkifier.prototype._linkifyRow = function (rowIndex) {
+        var absoluteRowIndex = this._terminal.buffer.ydisp + rowIndex;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (absoluteRowIndex &gt;= this._terminal.buffer.lines.length) {
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+        var text = this._terminal.buffer.translateBufferLineToString(absoluteRowIndex, false);
+        for (var i = 0; i &lt; this._linkMatchers.length; i++) {
+            this._doLinkifyRow(rowIndex, text, this._linkMatchers[i]);
+        }
+    };
+    Linkifier.prototype._doLinkifyRow = function (rowIndex, text, matcher, offset) {
+        var _this = this;
+        if (offset === void 0) { offset = 0; }
+        var match = text.match(matcher.regex);
+        if (!match || match.length === 0) {
+            return;
+        }
+        var uri = match[typeof matcher.matchIndex !== 'number' ? 0 : <span class="branch-1 cbranch-no" title="branch not covered" >matcher.matchIndex]</span>;
+        var index = text.indexOf(uri);
+        if (matcher.validationCallback) {
+            matcher.validationCallback(uri, function (isValid) {
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (_this._rowsTimeoutId) {
+<span class="cstat-no" title="statement not covered" >                    return;</span>
+                }
+                if (isValid) {
+                    _this._addLink(offset + index, rowIndex, uri, matcher);
+                }
+            });
+        }
+        else {
+            this._addLink(offset + index, rowIndex, uri, matcher);
+        }
+        var remainingStartIndex = index + uri.length;
+        var remainingText = text.substr(remainingStartIndex);
+        if (remainingText.length &gt; 0) {
+            this._doLinkifyRow(rowIndex, remainingText, matcher, offset + remainingStartIndex);
+        }
+    };
+    Linkifier.prototype._addLink = function (x, y, uri, matcher) {
+        var _this = this;
+        this._mouseZoneManager.add(new MouseZoneManager_1.MouseZone(x + 1, x + 1 + uri.length, y + 1, function (e) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (matcher.handler) {
+                return matcher.handler(e, uri);
+            }
+<span class="cstat-no" title="statement not covered" >            window.open(uri, '_blank');</span>
+        }, <span class="fstat-no" title="function not covered" >function (e) {</span>
+<span class="cstat-no" title="statement not covered" >            _this.emit(Types_1.LinkHoverEventTypes.HOVER, { x: x, y: y, length: uri.length });</span>
+<span class="cstat-no" title="statement not covered" >            _this._terminal.element.style.cursor = 'pointer';</span>
+        }, <span class="fstat-no" title="function not covered" >function (e) {</span>
+<span class="cstat-no" title="statement not covered" >            _this.emit(Types_1.LinkHoverEventTypes.TOOLTIP, { x: x, y: y, length: uri.length });</span>
+<span class="cstat-no" title="statement not covered" >            if (matcher.hoverTooltipCallback) {</span>
+<span class="cstat-no" title="statement not covered" >                matcher.hoverTooltipCallback(e, uri);</span>
+            }
+        }, <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            _this.emit(Types_1.LinkHoverEventTypes.LEAVE, { x: x, y: y, length: uri.length });</span>
+<span class="cstat-no" title="statement not covered" >            _this._terminal.element.style.cursor = '';</span>
+<span class="cstat-no" title="statement not covered" >            if (matcher.hoverLeaveCallback) {</span>
+<span class="cstat-no" title="statement not covered" >                matcher.hoverLeaveCallback();</span>
+            }
+        }, <span class="fstat-no" title="function not covered" >function (e) {</span>
+<span class="cstat-no" title="statement not covered" >            if (matcher.willLinkActivate) {</span>
+<span class="cstat-no" title="statement not covered" >                return matcher.willLinkActivate(e, uri);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return true;</span>
+        }));
+    };
+    Linkifier.TIME_BEFORE_LINKIFY = 200;
+    return Linkifier;
+}(EventEmitter_1.EventEmitter));
+exports.Linkifier = Linkifier;
+&nbsp;
+//# sourceMappingURL=Linkifier.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 19:51:20 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

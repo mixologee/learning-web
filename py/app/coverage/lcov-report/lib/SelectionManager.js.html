@@ -1,0 +1,1526 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/SelectionManager.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">lib/</a> SelectionManager.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">52.31% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>181/346</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.69% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>63/187</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">34.62% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>18/52</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">53.41% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>180/337</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">262×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">86×</span>
+<span class="cline-any cline-yes">86×</span>
+<span class="cline-any cline-yes">86×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">86×</span>
+<span class="cline-any cline-yes">86×</span>
+<span class="cline-any cline-yes">86×</span>
+<span class="cline-any cline-yes">86×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">86×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">86×</span>
+<span class="cline-any cline-yes">90×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">86×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">546×</span>
+<span class="cline-any cline-yes">546×</span>
+<span class="cline-any cline-yes">40×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">506×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">66×</span>
+<span class="cline-any cline-yes">66×</span>
+<span class="cline-any cline-yes">66×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">66×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">66×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">66×</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">66×</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">252×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">246×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var __extends = (this &amp;&amp; this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        (<span class="branch-1 cbranch-no" title="branch not covered" >{ __proto__: [] } instanceof Array </span>&amp;&amp; <span class="fstat-no" title="function not covered" ><span class="branch-2 cbranch-no" title="branch not covered" >function (d, b) {</span> <span class="cstat-no" title="statement not covered" >d.__proto__ = b; </span>})</span> ||
+<span class="fstat-no" title="function not covered" ><span class="branch-3 cbranch-no" title="branch not covered" >        function (d, b) {</span> <span class="cstat-no" title="statement not covered" >for (var p in b) <span class="cstat-no" title="statement not covered" >if (b.hasOwnProperty(p)) <span class="cstat-no" title="statement not covered" >d[p] = b[p]; </span></span></span>};</span>
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? <span class="branch-0 cbranch-no" title="branch not covered" >Object.create(b) </span>: (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var MouseHelper_1 = require("./utils/MouseHelper");
+var Browser = require("./shared/utils/Browser");
+var EventEmitter_1 = require("./EventEmitter");
+var SelectionModel_1 = require("./SelectionModel");
+var Buffer_1 = require("./Buffer");
+var AltClickHandler_1 = require("./handlers/AltClickHandler");
+var DRAG_SCROLL_MAX_THRESHOLD = 50;
+var DRAG_SCROLL_MAX_SPEED = 15;
+var DRAG_SCROLL_INTERVAL = 50;
+var ALT_CLICK_MOVE_CURSOR_TIME = 500;
+var WORD_SEPARATORS = ' ()[]{}\'"';
+var NON_BREAKING_SPACE_CHAR = String.fromCharCode(160);
+var ALL_NON_BREAKING_SPACE_REGEX = new RegExp(NON_BREAKING_SPACE_CHAR, 'g');
+var SelectionMode;
+(function (SelectionMode) {
+    SelectionMode[SelectionMode["NORMAL"] = 0] = "NORMAL";
+    SelectionMode[SelectionMode["WORD"] = 1] = "WORD";
+    SelectionMode[SelectionMode["LINE"] = 2] = "LINE";
+})(SelectionMode || (SelectionMode = {}));
+var SelectionManager = (function (_super) {
+    __extends(SelectionManager, _super);
+    function SelectionManager(_terminal, _charMeasure) {
+        var _this = _super.call(this) || this;
+        _this._terminal = _terminal;
+        _this._charMeasure = _charMeasure;
+        _this._enabled = true;
+        _this._initListeners();
+        _this.enable();
+        _this._model = new SelectionModel_1.SelectionModel(_terminal);
+        _this._activeSelectionMode = SelectionMode.NORMAL;
+        return _this;
+    }
+    Object.defineProperty(SelectionManager.prototype, "_buffer", {
+        get: function () {
+            return this._terminal.buffers.active;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SelectionManager.prototype._initListeners = function () {
+        var _this = this;
+        this._mouseMoveListener = <span class="fstat-no" title="function not covered" >function (event) {</span> <span class="cstat-no" title="statement not covered" >return _this._onMouseMove(event); </span>};
+        this._mouseUpListener = <span class="fstat-no" title="function not covered" >function (event) {</span> <span class="cstat-no" title="statement not covered" >return _this._onMouseUp(event); </span>};
+        this._trimListener = <span class="fstat-no" title="function not covered" >function (amount) {</span> <span class="cstat-no" title="statement not covered" >return _this._onTrim(amount); </span>};
+        this.initBuffersListeners();
+    };
+    SelectionManager.prototype.initBuffersListeners = function () {
+        var _this = this;
+        this._terminal.buffer.lines.on('trim', this._trimListener);
+        this._terminal.buffers.on('activate', <span class="fstat-no" title="function not covered" >function (e) {</span> <span class="cstat-no" title="statement not covered" >return _this._onBufferActivate(e); </span>});
+    };
+    SelectionManager.prototype.disable = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.clearSelection();</span>
+<span class="cstat-no" title="statement not covered" >        this._enabled = false;</span>
+    };
+    SelectionManager.prototype.enable = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this._enabled = true;</span>
+    };
+    Object.defineProperty(SelectionManager.prototype, "selectionStart", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return this._model.finalSelectionStart; </span>},
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectionManager.prototype, "selectionEnd", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return this._model.finalSelectionEnd; </span>},
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectionManager.prototype, "hasSelection", {
+        get: function () {
+            var start = this._model.finalSelectionStart;
+            var end = this._model.finalSelectionEnd;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!start || !end) {
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+            return start[0] !== end[0] || start[1] !== end[1];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectionManager.prototype, "selectionText", {
+        get: function () {
+            var start = this._model.finalSelectionStart;
+            var end = this._model.finalSelectionEnd;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!start || !end) {
+<span class="cstat-no" title="statement not covered" >                return '';</span>
+            }
+            var startRowEndCol = start[1] === end[1] ? end[0] : null;
+            var result = [];
+            result.push(this._buffer.translateBufferLineToString(start[1], true, start[0], startRowEndCol));
+            for (var i = start[1] + 1; i &lt;= end[1] - 1; i++) {
+                var bufferLine = this._buffer.lines.get(i);
+                var lineText = this._buffer.translateBufferLineToString(i, true);
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (bufferLine.isWrapped) {
+<span class="cstat-no" title="statement not covered" >                    result[result.length - 1] += lineText;</span>
+                }
+                else {
+                    result.push(lineText);
+                }
+            }
+            if (start[1] !== end[1]) {
+                var bufferLine = this._buffer.lines.get(end[1]);
+                var lineText = this._buffer.translateBufferLineToString(end[1], true, 0, end[0]);
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (bufferLine.isWrapped) {
+<span class="cstat-no" title="statement not covered" >                    result[result.length - 1] += lineText;</span>
+                }
+                else {
+                    result.push(lineText);
+                }
+            }
+            var formattedResult = result.map(function (line) {
+                return line.replace(ALL_NON_BREAKING_SPACE_REGEX, ' ');
+            }).join(Browser.isMSWindows ? <span class="branch-0 cbranch-no" title="branch not covered" >'\r\n' </span>: '\n');
+            return formattedResult;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SelectionManager.prototype.clearSelection = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this._model.clearSelection();</span>
+<span class="cstat-no" title="statement not covered" >        this._removeMouseDownListeners();</span>
+<span class="cstat-no" title="statement not covered" >        this.refresh();</span>
+    };
+    SelectionManager.prototype.refresh = <span class="fstat-no" title="function not covered" >function (isNewSelection) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        if (!this._refreshAnimationFrame) {</span>
+<span class="cstat-no" title="statement not covered" >            this._refreshAnimationFrame = window.requestAnimationFrame(<span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return _this._refresh(); </span>});</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (Browser.isLinux &amp;&amp; isNewSelection) {</span>
+<span class="cstat-no" title="statement not covered" >            var selectionText = this.selectionText;</span>
+<span class="cstat-no" title="statement not covered" >            if (selectionText.length) {</span>
+<span class="cstat-no" title="statement not covered" >                this.emit('newselection', this.selectionText);</span>
+            }
+        }
+    };
+    SelectionManager.prototype._refresh = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this._refreshAnimationFrame = null;</span>
+<span class="cstat-no" title="statement not covered" >        this.emit('refresh', { start: this._model.finalSelectionStart, end: this._model.finalSelectionEnd });</span>
+    };
+    SelectionManager.prototype.isClickInSelection = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        var coords = this._getMouseBufferCoords(event);</span>
+<span class="cstat-no" title="statement not covered" >        var start = this._model.finalSelectionStart;</span>
+<span class="cstat-no" title="statement not covered" >        var end = this._model.finalSelectionEnd;</span>
+<span class="cstat-no" title="statement not covered" >        if (!start || !end) {</span>
+<span class="cstat-no" title="statement not covered" >            return false;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return (coords[1] &gt; start[1] &amp;&amp; coords[1] &lt; end[1]) ||</span>
+            (start[1] === end[1] &amp;&amp; coords[1] === start[1] &amp;&amp; coords[0] &gt; start[0] &amp;&amp; coords[0] &lt; end[0]) ||
+            (start[1] &lt; end[1] &amp;&amp; coords[1] === end[1] &amp;&amp; coords[0] &lt; end[0]);
+    };
+    SelectionManager.prototype.selectWordAtCursor = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        var coords = this._getMouseBufferCoords(event);</span>
+<span class="cstat-no" title="statement not covered" >        if (coords) {</span>
+<span class="cstat-no" title="statement not covered" >            this._selectWordAt(coords, false);</span>
+<span class="cstat-no" title="statement not covered" >            this._model.selectionEnd = null;</span>
+<span class="cstat-no" title="statement not covered" >            this.refresh(true);</span>
+        }
+    };
+    SelectionManager.prototype.selectAll = function () {
+        this._model.isSelectAllActive = true;
+        this.refresh();
+        this._terminal.emit('selection');
+    };
+    SelectionManager.prototype._onTrim = <span class="fstat-no" title="function not covered" >function (amount) {</span>
+<span class="cstat-no" title="statement not covered" >        var needsRefresh = this._model.onTrim(amount);</span>
+<span class="cstat-no" title="statement not covered" >        if (needsRefresh) {</span>
+<span class="cstat-no" title="statement not covered" >            this.refresh();</span>
+        }
+    };
+    SelectionManager.prototype._getMouseBufferCoords = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        var coords = this._terminal.mouseHelper.getCoords(event, this._terminal.screenElement, this._charMeasure, this._terminal.options.lineHeight, this._terminal.cols, this._terminal.rows, true);</span>
+<span class="cstat-no" title="statement not covered" >        if (!coords) {</span>
+<span class="cstat-no" title="statement not covered" >            return null;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        coords[0]--;</span>
+<span class="cstat-no" title="statement not covered" >        coords[1]--;</span>
+<span class="cstat-no" title="statement not covered" >        coords[1] += this._terminal.buffer.ydisp;</span>
+<span class="cstat-no" title="statement not covered" >        return coords;</span>
+    };
+    SelectionManager.prototype._getMouseEventScrollAmount = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        var offset = MouseHelper_1.MouseHelper.getCoordsRelativeToElement(event, this._terminal.screenElement)[1];</span>
+<span class="cstat-no" title="statement not covered" >        var terminalHeight = this._terminal.rows * Math.ceil(this._charMeasure.height * this._terminal.options.lineHeight);</span>
+<span class="cstat-no" title="statement not covered" >        if (offset &gt;= 0 &amp;&amp; offset &lt;= terminalHeight) {</span>
+<span class="cstat-no" title="statement not covered" >            return 0;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (offset &gt; terminalHeight) {</span>
+<span class="cstat-no" title="statement not covered" >            offset -= terminalHeight;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        offset = Math.min(Math.max(offset, -DRAG_SCROLL_MAX_THRESHOLD), DRAG_SCROLL_MAX_THRESHOLD);</span>
+<span class="cstat-no" title="statement not covered" >        offset /= DRAG_SCROLL_MAX_THRESHOLD;</span>
+<span class="cstat-no" title="statement not covered" >        return (offset / Math.abs(offset)) + Math.round(offset * (DRAG_SCROLL_MAX_SPEED - 1));</span>
+    };
+    SelectionManager.prototype.shouldForceSelection = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        return Browser.isMac ? event.altKey : event.shiftKey;</span>
+    };
+    SelectionManager.prototype.onMouseDown = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        this._mouseDownTimeStamp = event.timeStamp;</span>
+<span class="cstat-no" title="statement not covered" >        if (event.button === 2 &amp;&amp; this.hasSelection) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (event.button !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (!this._enabled) {</span>
+<span class="cstat-no" title="statement not covered" >            if (!this.shouldForceSelection(event)) {</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            event.stopPropagation();</span>
+        }
+<span class="cstat-no" title="statement not covered" >        event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >        this._dragScrollAmount = 0;</span>
+<span class="cstat-no" title="statement not covered" >        if (this._enabled &amp;&amp; event.shiftKey) {</span>
+<span class="cstat-no" title="statement not covered" >            this._onIncrementalClick(event);</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            if (event.detail === 1) {</span>
+<span class="cstat-no" title="statement not covered" >                this._onSingleClick(event);</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (event.detail === 2) {</span>
+<span class="cstat-no" title="statement not covered" >                this._onDoubleClick(event);</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (event.detail === 3) {</span>
+<span class="cstat-no" title="statement not covered" >                this._onTripleClick(event);</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        this._addMouseDownListeners();</span>
+<span class="cstat-no" title="statement not covered" >        this.refresh(true);</span>
+    };
+    SelectionManager.prototype._addMouseDownListeners = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.element.ownerDocument.addEventListener('mousemove', this._mouseMoveListener);</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.element.ownerDocument.addEventListener('mouseup', this._mouseUpListener);</span>
+<span class="cstat-no" title="statement not covered" >        this._dragScrollIntervalTimer = setInterval(<span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return _this._dragScroll(); </span>}, DRAG_SCROLL_INTERVAL);</span>
+    };
+    SelectionManager.prototype._removeMouseDownListeners = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.element.ownerDocument.removeEventListener('mousemove', this._mouseMoveListener);</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.element.ownerDocument.removeEventListener('mouseup', this._mouseUpListener);</span>
+<span class="cstat-no" title="statement not covered" >        clearInterval(this._dragScrollIntervalTimer);</span>
+<span class="cstat-no" title="statement not covered" >        this._dragScrollIntervalTimer = null;</span>
+    };
+    SelectionManager.prototype._onIncrementalClick = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        if (this._model.selectionStart) {</span>
+<span class="cstat-no" title="statement not covered" >            this._model.selectionEnd = this._getMouseBufferCoords(event);</span>
+        }
+    };
+    SelectionManager.prototype._onSingleClick = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        this._model.selectionStartLength = 0;</span>
+<span class="cstat-no" title="statement not covered" >        this._model.isSelectAllActive = false;</span>
+<span class="cstat-no" title="statement not covered" >        this._activeSelectionMode = SelectionMode.NORMAL;</span>
+<span class="cstat-no" title="statement not covered" >        this._model.selectionStart = this._getMouseBufferCoords(event);</span>
+<span class="cstat-no" title="statement not covered" >        if (!this._model.selectionStart) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._model.selectionEnd = null;</span>
+<span class="cstat-no" title="statement not covered" >        var line = this._buffer.lines.get(this._model.selectionStart[1]);</span>
+<span class="cstat-no" title="statement not covered" >        if (!line) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (line.length &gt;= this._model.selectionStart[0]) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var char = line[this._model.selectionStart[0]];</span>
+<span class="cstat-no" title="statement not covered" >        if (char[Buffer_1.CHAR_DATA_WIDTH_INDEX] === 0) {</span>
+<span class="cstat-no" title="statement not covered" >            this._model.selectionStart[0]++;</span>
+        }
+    };
+    SelectionManager.prototype._onDoubleClick = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        var coords = this._getMouseBufferCoords(event);</span>
+<span class="cstat-no" title="statement not covered" >        if (coords) {</span>
+<span class="cstat-no" title="statement not covered" >            this._activeSelectionMode = SelectionMode.WORD;</span>
+<span class="cstat-no" title="statement not covered" >            this._selectWordAt(coords, true);</span>
+        }
+    };
+    SelectionManager.prototype._onTripleClick = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        var coords = this._getMouseBufferCoords(event);</span>
+<span class="cstat-no" title="statement not covered" >        if (coords) {</span>
+<span class="cstat-no" title="statement not covered" >            this._activeSelectionMode = SelectionMode.LINE;</span>
+<span class="cstat-no" title="statement not covered" >            this._selectLineAt(coords[1]);</span>
+        }
+    };
+    SelectionManager.prototype._onMouseMove = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        event.stopImmediatePropagation();</span>
+<span class="cstat-no" title="statement not covered" >        var previousSelectionEnd = this._model.selectionEnd ? [this._model.selectionEnd[0], this._model.selectionEnd[1]] : null;</span>
+<span class="cstat-no" title="statement not covered" >        this._model.selectionEnd = this._getMouseBufferCoords(event);</span>
+<span class="cstat-no" title="statement not covered" >        if (!this._model.selectionEnd) {</span>
+<span class="cstat-no" title="statement not covered" >            this.refresh(true);</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (this._activeSelectionMode === SelectionMode.LINE) {</span>
+<span class="cstat-no" title="statement not covered" >            if (this._model.selectionEnd[1] &lt; this._model.selectionStart[1]) {</span>
+<span class="cstat-no" title="statement not covered" >                this._model.selectionEnd[0] = 0;</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                this._model.selectionEnd[0] = this._terminal.cols;</span>
+            }
+        }
+        else <span class="cstat-no" title="statement not covered" >if (this._activeSelectionMode === SelectionMode.WORD) {</span>
+<span class="cstat-no" title="statement not covered" >            this._selectToWordAt(this._model.selectionEnd);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._dragScrollAmount = this._getMouseEventScrollAmount(event);</span>
+<span class="cstat-no" title="statement not covered" >        if (this._dragScrollAmount &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            this._model.selectionEnd[0] = this._terminal.cols;</span>
+        }
+        else <span class="cstat-no" title="statement not covered" >if (this._dragScrollAmount &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            this._model.selectionEnd[0] = 0;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (this._model.selectionEnd[1] &lt; this._buffer.lines.length) {</span>
+<span class="cstat-no" title="statement not covered" >            var char = this._buffer.lines.get(this._model.selectionEnd[1])[this._model.selectionEnd[0]];</span>
+<span class="cstat-no" title="statement not covered" >            if (char &amp;&amp; char[Buffer_1.CHAR_DATA_WIDTH_INDEX] === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                this._model.selectionEnd[0]++;</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        if (!previousSelectionEnd ||</span>
+            previousSelectionEnd[0] !== this._model.selectionEnd[0] ||
+            previousSelectionEnd[1] !== this._model.selectionEnd[1]) {
+<span class="cstat-no" title="statement not covered" >            this.refresh(true);</span>
+        }
+    };
+    SelectionManager.prototype._dragScroll = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this._dragScrollAmount) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.scrollLines(this._dragScrollAmount, false);</span>
+<span class="cstat-no" title="statement not covered" >            if (this._dragScrollAmount &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                this._model.selectionEnd = [this._terminal.cols - 1, Math.min(this._terminal.buffer.ydisp + this._terminal.rows, this._terminal.buffer.lines.length - 1)];</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                this._model.selectionEnd = [0, this._terminal.buffer.ydisp];</span>
+            }
+<span class="cstat-no" title="statement not covered" >            this.refresh();</span>
+        }
+    };
+    SelectionManager.prototype._onMouseUp = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        var timeElapsed = event.timeStamp - this._mouseDownTimeStamp;</span>
+<span class="cstat-no" title="statement not covered" >        this._removeMouseDownListeners();</span>
+<span class="cstat-no" title="statement not covered" >        if (this.selectionText.length &lt;= 1 &amp;&amp; timeElapsed &lt; ALT_CLICK_MOVE_CURSOR_TIME) {</span>
+<span class="cstat-no" title="statement not covered" >            (new AltClickHandler_1.AltClickHandler(event, this._terminal)).move();</span>
+        }
+        else <span class="cstat-no" title="statement not covered" >if (this.hasSelection) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.emit('selection');</span>
+        }
+    };
+    SelectionManager.prototype._onBufferActivate = <span class="fstat-no" title="function not covered" >function (e) {</span>
+<span class="cstat-no" title="statement not covered" >        this.clearSelection();</span>
+<span class="cstat-no" title="statement not covered" >        e.inactiveBuffer.lines.off('trim', this._trimListener);</span>
+<span class="cstat-no" title="statement not covered" >        e.activeBuffer.lines.on('trim', this._trimListener);</span>
+    };
+    SelectionManager.prototype._convertViewportColToCharacterIndex = function (bufferLine, coords) {
+        var charIndex = coords[0];
+        for (var i = 0; coords[0] &gt;= i; i++) {
+            var char = bufferLine[i];
+            if (char[Buffer_1.CHAR_DATA_WIDTH_INDEX] === 0) {
+                charIndex--;
+            }
+            else if (char[Buffer_1.CHAR_DATA_CHAR_INDEX].length &gt; 1 &amp;&amp; coords[0] !== i) {
+                charIndex += char[Buffer_1.CHAR_DATA_CHAR_INDEX].length - 1;
+            }
+        }
+        return charIndex;
+    };
+    SelectionManager.prototype.setSelection = <span class="fstat-no" title="function not covered" >function (col, row, length) {</span>
+<span class="cstat-no" title="statement not covered" >        this._model.clearSelection();</span>
+<span class="cstat-no" title="statement not covered" >        this._removeMouseDownListeners();</span>
+<span class="cstat-no" title="statement not covered" >        this._model.selectionStart = [col, row];</span>
+<span class="cstat-no" title="statement not covered" >        this._model.selectionStartLength = length;</span>
+<span class="cstat-no" title="statement not covered" >        this.refresh();</span>
+    };
+    SelectionManager.prototype._getWordAt = function (coords, allowWhitespaceOnlySelection) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (coords[0] &gt;= this._terminal.cols) {
+<span class="cstat-no" title="statement not covered" >            return null;</span>
+        }
+        var bufferLine = this._buffer.lines.get(coords[1]);
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!bufferLine) {
+<span class="cstat-no" title="statement not covered" >            return null;</span>
+        }
+        var line = this._buffer.translateBufferLineToString(coords[1], false);
+        var startIndex = this._convertViewportColToCharacterIndex(bufferLine, coords);
+        var endIndex = startIndex;
+        var charOffset = coords[0] - startIndex;
+        var leftWideCharCount = 0;
+        var rightWideCharCount = 0;
+        var leftLongCharOffset = 0;
+        var rightLongCharOffset = 0;
+        if (line.charAt(startIndex) === ' ') {
+            while (startIndex &gt; 0 &amp;&amp; line.charAt(startIndex - 1) === ' ') {
+                startIndex--;
+            }
+            while (endIndex &lt; line.length &amp;&amp; line.charAt(endIndex + 1) === ' ') {
+                endIndex++;
+            }
+        }
+        else {
+            var startCol = coords[0];
+            var endCol = coords[0];
+            if (bufferLine[startCol][Buffer_1.CHAR_DATA_WIDTH_INDEX] === 0) {
+                leftWideCharCount++;
+                startCol--;
+            }
+            if (bufferLine[endCol][Buffer_1.CHAR_DATA_WIDTH_INDEX] === 2) {
+                rightWideCharCount++;
+                endCol++;
+            }
+            if (bufferLine[endCol][Buffer_1.CHAR_DATA_CHAR_INDEX].length &gt; 1) {
+                rightLongCharOffset += bufferLine[endCol][Buffer_1.CHAR_DATA_CHAR_INDEX].length - 1;
+                endIndex += bufferLine[endCol][Buffer_1.CHAR_DATA_CHAR_INDEX].length - 1;
+            }
+            while (startCol &gt; 0 &amp;&amp; startIndex &gt; 0 &amp;&amp; !this._isCharWordSeparator(bufferLine[startCol - 1])) {
+                var char = bufferLine[startCol - 1];
+                if (char[Buffer_1.CHAR_DATA_WIDTH_INDEX] === 0) {
+                    leftWideCharCount++;
+                    startCol--;
+                }
+                else if (char[Buffer_1.CHAR_DATA_CHAR_INDEX].length &gt; 1) {
+                    leftLongCharOffset += char[Buffer_1.CHAR_DATA_CHAR_INDEX].length - 1;
+                    startIndex -= char[Buffer_1.CHAR_DATA_CHAR_INDEX].length - 1;
+                }
+                startIndex--;
+                startCol--;
+            }
+            while (endCol &lt; bufferLine.length &amp;&amp; endIndex + 1 &lt; line.length &amp;&amp; !this._isCharWordSeparator(bufferLine[endCol + 1])) {
+                var char = bufferLine[endCol + 1];
+                if (char[Buffer_1.CHAR_DATA_WIDTH_INDEX] === 2) {
+                    rightWideCharCount++;
+                    endCol++;
+                }
+                else if (char[Buffer_1.CHAR_DATA_CHAR_INDEX].length &gt; 1) {
+                    rightLongCharOffset += char[Buffer_1.CHAR_DATA_CHAR_INDEX].length - 1;
+                    endIndex += char[Buffer_1.CHAR_DATA_CHAR_INDEX].length - 1;
+                }
+                endIndex++;
+                endCol++;
+            }
+        }
+        endIndex++;
+        var start = startIndex
+            + charOffset
+            - leftWideCharCount
+            + leftLongCharOffset;
+        var length = Math.min(this._terminal.cols, endIndex
+            - startIndex
+            + leftWideCharCount
+            + rightWideCharCount
+            - leftLongCharOffset
+            - rightLongCharOffset);
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!allowWhitespaceOnlySelection &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >line.slice(startIndex, endIndex).trim() === '')</span> {
+<span class="cstat-no" title="statement not covered" >            return null;</span>
+        }
+        return { start: start, length: length };
+    };
+    SelectionManager.prototype._selectWordAt = function (coords, allowWhitespaceOnlySelection) {
+        var wordPosition = this._getWordAt(coords, allowWhitespaceOnlySelection);
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (wordPosition) {
+            this._model.selectionStart = [wordPosition.start, coords[1]];
+            this._model.selectionStartLength = wordPosition.length;
+        }
+    };
+    SelectionManager.prototype._selectToWordAt = <span class="fstat-no" title="function not covered" >function (coords) {</span>
+<span class="cstat-no" title="statement not covered" >        var wordPosition = this._getWordAt(coords, true);</span>
+<span class="cstat-no" title="statement not covered" >        if (wordPosition) {</span>
+<span class="cstat-no" title="statement not covered" >            this._model.selectionEnd = [this._model.areSelectionValuesReversed() ? wordPosition.start : (wordPosition.start + wordPosition.length), coords[1]];</span>
+        }
+    };
+    SelectionManager.prototype._isCharWordSeparator = function (charData) {
+        if (charData[Buffer_1.CHAR_DATA_WIDTH_INDEX] === 0) {
+            return false;
+        }
+        return WORD_SEPARATORS.indexOf(charData[Buffer_1.CHAR_DATA_CHAR_INDEX]) &gt;= 0;
+    };
+    SelectionManager.prototype._selectLineAt = function (line) {
+        this._model.selectionStart = [0, line];
+        this._model.selectionStartLength = this._terminal.cols;
+    };
+    return SelectionManager;
+}(EventEmitter_1.EventEmitter));
+exports.SelectionManager = SelectionManager;
+&nbsp;
+//# sourceMappingURL=SelectionManager.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 19:51:20 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

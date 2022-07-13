@@ -1,0 +1,2531 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/InputHandler.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">lib/</a> InputHandler.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50.18% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>283/564</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">44.95% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>147/327</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">60.87% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>28/46</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50.18% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>283/564</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1415×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">25130×</span>
+<span class="cline-any cline-yes">25130×</span>
+<span class="cline-any cline-yes">25130×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25130×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25130×</span>
+<span class="cline-any cline-yes">25130×</span>
+<span class="cline-any cline-yes">396×</span>
+<span class="cline-any cline-yes">396×</span>
+<span class="cline-any cline-yes">196×</span>
+<span class="cline-any cline-yes">196×</span>
+<span class="cline-any cline-yes">196×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">396×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">396×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24734×</span>
+<span class="cline-any cline-yes">552×</span>
+<span class="cline-any cline-yes">292×</span>
+<span class="cline-any cline-yes">292×</span>
+<span class="cline-any cline-yes">292×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">283×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">260×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24734×</span>
+<span class="cline-any cline-yes">24734×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24734×</span>
+<span class="cline-any cline-yes">24734×</span>
+<span class="cline-any cline-yes">24734×</span>
+<span class="cline-any cline-yes">24734×</span>
+<span class="cline-any cline-yes">339×</span>
+<span class="cline-any cline-yes">339×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1567×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1567×</span>
+<span class="cline-any cline-yes">1567×</span>
+<span class="cline-any cline-yes">780×</span>
+<span class="cline-any cline-yes">780×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1567×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1567×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1619×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">46×</span>
+<span class="cline-any cline-yes">46×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">140×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">132×</span>
+<span class="cline-any cline-yes">132×</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">70×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">70×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">70×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">70×</span>
+<span class="cline-any cline-yes">62×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var EscapeSequences_1 = require("./EscapeSequences");
+var Charsets_1 = require("./Charsets");
+var Buffer_1 = require("./Buffer");
+var Types_1 = require("./renderer/Types");
+var CharWidth_1 = require("./CharWidth");
+var InputHandler = (function () {
+    function InputHandler(_terminal) {
+        this._terminal = _terminal;
+    }
+    InputHandler.prototype.addChar = function (char, code) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (char &gt;= ' ') {
+            var chWidth = CharWidth_1.wcwidth(code);
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (this._terminal.charset &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >this._terminal.charset[char])</span> {
+<span class="cstat-no" title="statement not covered" >                char = this._terminal.charset[char];</span>
+            }
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (this._terminal.options.screenReaderMode) {
+<span class="cstat-no" title="statement not covered" >                this._terminal.emit('a11y.char', char);</span>
+            }
+            var row = this._terminal.buffer.y + this._terminal.buffer.ybase;
+            if (!chWidth &amp;&amp; this._terminal.buffer.x) {
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (this._terminal.buffer.lines.get(row)[this._terminal.buffer.x - 1]) {
+                    if (!this._terminal.buffer.lines.get(row)[this._terminal.buffer.x - 1][Buffer_1.CHAR_DATA_WIDTH_INDEX]) {
+                        <span class="missing-if-branch" title="else path not taken" >E</span>if (this._terminal.buffer.lines.get(row)[this._terminal.buffer.x - 2]) {
+                            this._terminal.buffer.lines.get(row)[this._terminal.buffer.x - 2][Buffer_1.CHAR_DATA_CHAR_INDEX] += char;
+                            this._terminal.buffer.lines.get(row)[this._terminal.buffer.x - 2][3] = char.charCodeAt(0);
+                        }
+                    }
+                    else {
+                        this._terminal.buffer.lines.get(row)[this._terminal.buffer.x - 1][Buffer_1.CHAR_DATA_CHAR_INDEX] += char;
+                        this._terminal.buffer.lines.get(row)[this._terminal.buffer.x - 1][3] = char.charCodeAt(0);
+                    }
+                    this._terminal.updateRange(this._terminal.buffer.y);
+                }
+                return;
+            }
+            if (this._terminal.buffer.x + chWidth - 1 &gt;= this._terminal.cols) {
+                if (this._terminal.wraparoundMode) {
+                    this._terminal.buffer.x = 0;
+                    this._terminal.buffer.y++;
+                    if (this._terminal.buffer.y &gt; this._terminal.buffer.scrollBottom) {
+                        this._terminal.buffer.y--;
+                        this._terminal.scroll(true);
+                    }
+                    else {
+                        this._terminal.buffer.lines.get(this._terminal.buffer.y).isWrapped = true;
+                    }
+                }
+                else {
+                    <span class="missing-if-branch" title="if path not taken" >I</span>if (chWidth === 2) {
+<span class="cstat-no" title="statement not covered" >                        return;</span>
+                    }
+                }
+            }
+            row = this._terminal.buffer.y + this._terminal.buffer.ybase;
+            if (this._terminal.insertMode) {
+                for (var moves = 0; moves &lt; chWidth; ++moves) {
+                    var removed = this._terminal.buffer.lines.get(this._terminal.buffer.y + this._terminal.buffer.ybase).pop();
+                    if (removed[Buffer_1.CHAR_DATA_WIDTH_INDEX] === 0
+                        &amp;&amp; this._terminal.buffer.lines.get(row)[this._terminal.cols - 2]
+                        &amp;&amp; this._terminal.buffer.lines.get(row)[this._terminal.cols - 2][Buffer_1.CHAR_DATA_WIDTH_INDEX] === 2) {
+                        this._terminal.buffer.lines.get(row)[this._terminal.cols - 2] = [this._terminal.curAttr, ' ', 1, ' '.charCodeAt(0)];
+                    }
+                    this._terminal.buffer.lines.get(row).splice(this._terminal.buffer.x, 0, [this._terminal.curAttr, ' ', 1, ' '.charCodeAt(0)]);
+                }
+            }
+            this._terminal.buffer.lines.get(row)[this._terminal.buffer.x] = [this._terminal.curAttr, char, chWidth, char.charCodeAt(0)];
+            this._terminal.buffer.x++;
+            this._terminal.updateRange(this._terminal.buffer.y);
+            if (chWidth === 2) {
+                this._terminal.buffer.lines.get(row)[this._terminal.buffer.x] = [this._terminal.curAttr, '', 0, undefined];
+                this._terminal.buffer.x++;
+            }
+        }
+    };
+    InputHandler.prototype.bell = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.bell();</span>
+    };
+    InputHandler.prototype.lineFeed = function () {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (this._terminal.convertEol) {
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.x = 0;</span>
+        }
+        this._terminal.buffer.y++;
+        if (this._terminal.buffer.y &gt; this._terminal.buffer.scrollBottom) {
+            this._terminal.buffer.y--;
+            this._terminal.scroll();
+        }
+        if (this._terminal.buffer.x &gt;= this._terminal.cols) {
+            this._terminal.buffer.x--;
+        }
+        this._terminal.emit('linefeed');
+    };
+    InputHandler.prototype.carriageReturn = function () {
+        this._terminal.buffer.x = 0;
+    };
+    InputHandler.prototype.backspace = function () {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this._terminal.buffer.x &gt; 0) {
+            this._terminal.buffer.x--;
+        }
+    };
+    InputHandler.prototype.tab = function () {
+        var originalX = this._terminal.buffer.x;
+        this._terminal.buffer.x = this._terminal.buffer.nextStop();
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (this._terminal.options.screenReaderMode) {
+<span class="cstat-no" title="statement not covered" >            this._terminal.emit('a11y.tab', this._terminal.buffer.x - originalX);</span>
+        }
+    };
+    InputHandler.prototype.shiftOut = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.setgLevel(1);</span>
+    };
+    InputHandler.prototype.shiftIn = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.setgLevel(0);</span>
+    };
+    InputHandler.prototype.insertChars = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        var param = params[0];</span>
+<span class="cstat-no" title="statement not covered" >        if (param &lt; 1)</span>
+<span class="cstat-no" title="statement not covered" >            param = 1;</span>
+<span class="cstat-no" title="statement not covered" >        var row = this._terminal.buffer.y + this._terminal.buffer.ybase;</span>
+<span class="cstat-no" title="statement not covered" >        var j = this._terminal.buffer.x;</span>
+<span class="cstat-no" title="statement not covered" >        var ch = [this._terminal.eraseAttr(), ' ', 1, 32];</span>
+<span class="cstat-no" title="statement not covered" >        while (param-- &amp;&amp; j &lt; this._terminal.cols) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.lines.get(row).splice(j++, 0, ch);</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.lines.get(row).pop();</span>
+        }
+    };
+    InputHandler.prototype.cursorUp = function (params) {
+        var param = params[0];
+        if (param &lt; 1) {
+            param = 1;
+        }
+        this._terminal.buffer.y -= param;
+        if (this._terminal.buffer.y &lt; 0) {
+            this._terminal.buffer.y = 0;
+        }
+    };
+    InputHandler.prototype.cursorDown = function (params) {
+        var param = params[0];
+        if (param &lt; 1) {
+            param = 1;
+        }
+        this._terminal.buffer.y += param;
+        if (this._terminal.buffer.y &gt;= this._terminal.rows) {
+            this._terminal.buffer.y = this._terminal.rows - 1;
+        }
+        if (this._terminal.buffer.x &gt;= this._terminal.cols) {
+            this._terminal.buffer.x--;
+        }
+    };
+    InputHandler.prototype.cursorForward = function (params) {
+        var param = params[0];
+        if (param &lt; 1) {
+            param = 1;
+        }
+        this._terminal.buffer.x += param;
+        if (this._terminal.buffer.x &gt;= this._terminal.cols) {
+            this._terminal.buffer.x = this._terminal.cols - 1;
+        }
+    };
+    InputHandler.prototype.cursorBackward = function (params) {
+        var param = params[0];
+        if (param &lt; 1) {
+            param = 1;
+        }
+        if (this._terminal.buffer.x &gt;= this._terminal.cols) {
+            this._terminal.buffer.x--;
+        }
+        this._terminal.buffer.x -= param;
+        if (this._terminal.buffer.x &lt; 0) {
+            this._terminal.buffer.x = 0;
+        }
+    };
+    InputHandler.prototype.cursorNextLine = function (params) {
+        var param = params[0];
+        if (param &lt; 1) {
+            param = 1;
+        }
+        this._terminal.buffer.y += param;
+        if (this._terminal.buffer.y &gt;= this._terminal.rows) {
+            this._terminal.buffer.y = this._terminal.rows - 1;
+        }
+        this._terminal.buffer.x = 0;
+    };
+    InputHandler.prototype.cursorPrecedingLine = function (params) {
+        var param = params[0];
+        if (param &lt; 1) {
+            param = 1;
+        }
+        this._terminal.buffer.y -= param;
+        if (this._terminal.buffer.y &lt; 0) {
+            this._terminal.buffer.y = 0;
+        }
+        this._terminal.buffer.x = 0;
+    };
+    InputHandler.prototype.cursorCharAbsolute = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        var param = params[0];</span>
+<span class="cstat-no" title="statement not covered" >        if (param &lt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >            param = 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._terminal.buffer.x = param - 1;</span>
+    };
+    InputHandler.prototype.cursorPosition = function (params) {
+        var col;
+        var row = params[0] - 1;
+        if (params.length &gt;= 2) {
+            col = params[1] - 1;
+        }
+        else {
+            col = 0;
+        }
+        if (row &lt; 0) {
+            row = 0;
+        }
+        else if (row &gt;= this._terminal.rows) {
+            row = this._terminal.rows - 1;
+        }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (col &lt; 0) {
+<span class="cstat-no" title="statement not covered" >            col = 0;</span>
+        }
+        else if (col &gt;= this._terminal.cols) {
+            col = this._terminal.cols - 1;
+        }
+        this._terminal.buffer.x = col;
+        this._terminal.buffer.y = row;
+    };
+    InputHandler.prototype.cursorForwardTab = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        var param = params[0] || 1;</span>
+<span class="cstat-no" title="statement not covered" >        while (param--) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.x = this._terminal.buffer.nextStop();</span>
+        }
+    };
+    InputHandler.prototype.eraseInDisplay = function (params) {
+        var j;
+        switch (params[0]) {
+            case 0:
+                this._terminal.eraseRight(this._terminal.buffer.x, this._terminal.buffer.y);
+                j = this._terminal.buffer.y + 1;
+                for (; j &lt; this._terminal.rows; j++) {
+                    this._terminal.eraseLine(j);
+                }
+                break;
+<span class="branch-1 cbranch-no" title="branch not covered" >            case 1:</span>
+<span class="cstat-no" title="statement not covered" >                this._terminal.eraseLeft(this._terminal.buffer.x, this._terminal.buffer.y);</span>
+<span class="cstat-no" title="statement not covered" >                j = this._terminal.buffer.y;</span>
+<span class="cstat-no" title="statement not covered" >                while (j--) {</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.eraseLine(j);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                break;</span>
+<span class="branch-2 cbranch-no" title="branch not covered" >            case 2:</span>
+<span class="cstat-no" title="statement not covered" >                j = this._terminal.rows;</span>
+<span class="cstat-no" title="statement not covered" >                while (j--)</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.eraseLine(j);</span>
+<span class="cstat-no" title="statement not covered" >                break;</span>
+            case 3:
+                var scrollBackSize = this._terminal.buffer.lines.length - this._terminal.rows;
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (scrollBackSize &gt; 0) {
+                    this._terminal.buffer.lines.trimStart(scrollBackSize);
+                    this._terminal.buffer.ybase = Math.max(this._terminal.buffer.ybase - scrollBackSize, 0);
+                    this._terminal.buffer.ydisp = Math.max(this._terminal.buffer.ydisp - scrollBackSize, 0);
+                    this._terminal.emit('scroll', 0);
+                }
+                break;
+        }
+    };
+    InputHandler.prototype.eraseInLine = function (params) {
+        switch (params[0]) {
+            case 0:
+                this._terminal.eraseRight(this._terminal.buffer.x, this._terminal.buffer.y);
+                break;
+<span class="branch-1 cbranch-no" title="branch not covered" >            case 1:</span>
+<span class="cstat-no" title="statement not covered" >                this._terminal.eraseLeft(this._terminal.buffer.x, this._terminal.buffer.y);</span>
+<span class="cstat-no" title="statement not covered" >                break;</span>
+<span class="branch-2 cbranch-no" title="branch not covered" >            case 2:</span>
+<span class="cstat-no" title="statement not covered" >                this._terminal.eraseLine(this._terminal.buffer.y);</span>
+<span class="cstat-no" title="statement not covered" >                break;</span>
+        }
+    };
+    InputHandler.prototype.insertLines = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        var param = params[0];</span>
+<span class="cstat-no" title="statement not covered" >        if (param &lt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >            param = 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var row = this._terminal.buffer.y + this._terminal.buffer.ybase;</span>
+<span class="cstat-no" title="statement not covered" >        var scrollBottomRowsOffset = this._terminal.rows - 1 - this._terminal.buffer.scrollBottom;</span>
+<span class="cstat-no" title="statement not covered" >        var scrollBottomAbsolute = this._terminal.rows - 1 + this._terminal.buffer.ybase - scrollBottomRowsOffset + 1;</span>
+<span class="cstat-no" title="statement not covered" >        while (param--) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.lines.splice(scrollBottomAbsolute - 1, 1);</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.lines.splice(row, 0, this._terminal.blankLine(true));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._terminal.updateRange(this._terminal.buffer.y);</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.updateRange(this._terminal.buffer.scrollBottom);</span>
+    };
+    InputHandler.prototype.deleteLines = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        var param = params[0];</span>
+<span class="cstat-no" title="statement not covered" >        if (param &lt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >            param = 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var row = this._terminal.buffer.y + this._terminal.buffer.ybase;</span>
+<span class="cstat-no" title="statement not covered" >        var j;</span>
+<span class="cstat-no" title="statement not covered" >        j = this._terminal.rows - 1 - this._terminal.buffer.scrollBottom;</span>
+<span class="cstat-no" title="statement not covered" >        j = this._terminal.rows - 1 + this._terminal.buffer.ybase - j;</span>
+<span class="cstat-no" title="statement not covered" >        while (param--) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.lines.splice(row, 1);</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.lines.splice(j, 0, this._terminal.blankLine(true));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._terminal.updateRange(this._terminal.buffer.y);</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.updateRange(this._terminal.buffer.scrollBottom);</span>
+    };
+    InputHandler.prototype.deleteChars = function (params) {
+        var param = params[0];
+        if (param &lt; 1) {
+            param = 1;
+        }
+        var row = this._terminal.buffer.y + this._terminal.buffer.ybase;
+        var ch = [this._terminal.eraseAttr(), ' ', 1, 32];
+        while (param--) {
+            this._terminal.buffer.lines.get(row).splice(this._terminal.buffer.x, 1);
+            this._terminal.buffer.lines.get(row).push(ch);
+        }
+        this._terminal.updateRange(this._terminal.buffer.y);
+    };
+    InputHandler.prototype.scrollUp = function (params) {
+        var param = params[0] || 1;
+        while (param--) {
+            this._terminal.buffer.lines.splice(this._terminal.buffer.ybase + this._terminal.buffer.scrollTop, 1);
+            this._terminal.buffer.lines.splice(this._terminal.buffer.ybase + this._terminal.buffer.scrollBottom, 0, this._terminal.blankLine());
+        }
+        this._terminal.updateRange(this._terminal.buffer.scrollTop);
+        this._terminal.updateRange(this._terminal.buffer.scrollBottom);
+    };
+    InputHandler.prototype.scrollDown = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        var param = params[0] || 1;</span>
+<span class="cstat-no" title="statement not covered" >        while (param--) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.lines.splice(this._terminal.buffer.ybase + this._terminal.buffer.scrollBottom, 1);</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.lines.splice(this._terminal.buffer.ybase + this._terminal.buffer.scrollTop, 0, this._terminal.blankLine());</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._terminal.updateRange(this._terminal.buffer.scrollTop);</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.updateRange(this._terminal.buffer.scrollBottom);</span>
+    };
+    InputHandler.prototype.eraseChars = function (params) {
+        var param = params[0];
+        if (param &lt; 1) {
+            param = 1;
+        }
+        var row = this._terminal.buffer.y + this._terminal.buffer.ybase;
+        var j = this._terminal.buffer.x;
+        var ch = [this._terminal.eraseAttr(), ' ', 1, 32];
+        while (param-- &amp;&amp; j &lt; this._terminal.cols) {
+            this._terminal.buffer.lines.get(row)[j++] = ch;
+        }
+    };
+    InputHandler.prototype.cursorBackwardTab = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        var param = params[0] || 1;</span>
+<span class="cstat-no" title="statement not covered" >        while (param--) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.x = this._terminal.buffer.prevStop();</span>
+        }
+    };
+    InputHandler.prototype.charPosAbsolute = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        var param = params[0];</span>
+<span class="cstat-no" title="statement not covered" >        if (param &lt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >            param = 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._terminal.buffer.x = param - 1;</span>
+<span class="cstat-no" title="statement not covered" >        if (this._terminal.buffer.x &gt;= this._terminal.cols) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.x = this._terminal.cols - 1;</span>
+        }
+    };
+    InputHandler.prototype.HPositionRelative = function (params) {
+        var param = params[0];
+        if (param &lt; 1) {
+            param = 1;
+        }
+        this._terminal.buffer.x += param;
+        if (this._terminal.buffer.x &gt;= this._terminal.cols) {
+            this._terminal.buffer.x = this._terminal.cols - 1;
+        }
+    };
+    InputHandler.prototype.repeatPrecedingCharacter = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        var param = params[0] || 1;</span>
+<span class="cstat-no" title="statement not covered" >        var line = this._terminal.buffer.lines.get(this._terminal.buffer.ybase + this._terminal.buffer.y);</span>
+<span class="cstat-no" title="statement not covered" >        var ch = line[this._terminal.buffer.x - 1] || [this._terminal.defAttr, ' ', 1, 32];</span>
+<span class="cstat-no" title="statement not covered" >        while (param--) {</span>
+<span class="cstat-no" title="statement not covered" >            line[this._terminal.buffer.x++] = ch;</span>
+        }
+    };
+    InputHandler.prototype.sendDeviceAttributes = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        if (params[0] &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (!this._terminal.prefix) {</span>
+<span class="cstat-no" title="statement not covered" >            if (this._terminal.is('xterm') || this._terminal.is('rxvt-unicode') || this._terminal.is('screen')) {</span>
+<span class="cstat-no" title="statement not covered" >                this._terminal.send(EscapeSequences_1.C0.ESC + '[?1;2c');</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (this._terminal.is('linux')) {</span>
+<span class="cstat-no" title="statement not covered" >                this._terminal.send(EscapeSequences_1.C0.ESC + '[?6c');</span>
+            }
+        }
+        else <span class="cstat-no" title="statement not covered" >if (this._terminal.prefix === '&gt;') {</span>
+<span class="cstat-no" title="statement not covered" >            if (this._terminal.is('xterm')) {</span>
+<span class="cstat-no" title="statement not covered" >                this._terminal.send(EscapeSequences_1.C0.ESC + '[&gt;0;276;0c');</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (this._terminal.is('rxvt-unicode')) {</span>
+<span class="cstat-no" title="statement not covered" >                this._terminal.send(EscapeSequences_1.C0.ESC + '[&gt;85;95;0c');</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (this._terminal.is('linux')) {</span>
+<span class="cstat-no" title="statement not covered" >                this._terminal.send(params[0] + 'c');</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (this._terminal.is('screen')) {</span>
+<span class="cstat-no" title="statement not covered" >                this._terminal.send(EscapeSequences_1.C0.ESC + '[&gt;83;40003;0c');</span>
+            }
+        }
+    };
+    InputHandler.prototype.linePosAbsolute = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        var param = params[0];</span>
+<span class="cstat-no" title="statement not covered" >        if (param &lt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >            param = 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._terminal.buffer.y = param - 1;</span>
+<span class="cstat-no" title="statement not covered" >        if (this._terminal.buffer.y &gt;= this._terminal.rows) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.y = this._terminal.rows - 1;</span>
+        }
+    };
+    InputHandler.prototype.VPositionRelative = function (params) {
+        var param = params[0];
+        if (param &lt; 1) {
+            param = 1;
+        }
+        this._terminal.buffer.y += param;
+        if (this._terminal.buffer.y &gt;= this._terminal.rows) {
+            this._terminal.buffer.y = this._terminal.rows - 1;
+        }
+        if (this._terminal.buffer.x &gt;= this._terminal.cols) {
+            this._terminal.buffer.x--;
+        }
+    };
+    InputHandler.prototype.HVPosition = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        if (params[0] &lt; 1)</span>
+<span class="cstat-no" title="statement not covered" >            params[0] = 1;</span>
+<span class="cstat-no" title="statement not covered" >        if (params[1] &lt; 1)</span>
+<span class="cstat-no" title="statement not covered" >            params[1] = 1;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.buffer.y = params[0] - 1;</span>
+<span class="cstat-no" title="statement not covered" >        if (this._terminal.buffer.y &gt;= this._terminal.rows) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.y = this._terminal.rows - 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._terminal.buffer.x = params[1] - 1;</span>
+<span class="cstat-no" title="statement not covered" >        if (this._terminal.buffer.x &gt;= this._terminal.cols) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.buffer.x = this._terminal.cols - 1;</span>
+        }
+    };
+    InputHandler.prototype.tabClear = function (params) {
+        var param = params[0];
+        if (param &lt;= 0) {
+            delete this._terminal.buffer.tabs[this._terminal.buffer.x];
+        }
+        else <span class="missing-if-branch" title="else path not taken" >E</span>if (param === 3) {
+            this._terminal.buffer.tabs = {};
+        }
+    };
+    InputHandler.prototype.setMode = function (params) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (params.length &gt; 1) {
+<span class="cstat-no" title="statement not covered" >            for (var i = 0; i &lt; params.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                this.setMode([params[i]]);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!this._terminal.prefix) {
+<span class="cstat-no" title="statement not covered" >            switch (params[0]) {</span>
+                case 4:
+<span class="cstat-no" title="statement not covered" >                    this._terminal.insertMode = true;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 20:
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+            }
+        }
+        else <span class="missing-if-branch" title="else path not taken" >E</span>if (this._terminal.prefix === '?') {
+            switch (params[0]) {
+<span class="branch-0 cbranch-no" title="branch not covered" >                case 1:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.applicationCursor = true;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-1 cbranch-no" title="branch not covered" >                case 2:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.setgCharset(0, Charsets_1.DEFAULT_CHARSET);</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.setgCharset(1, Charsets_1.DEFAULT_CHARSET);</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.setgCharset(2, Charsets_1.DEFAULT_CHARSET);</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.setgCharset(3, Charsets_1.DEFAULT_CHARSET);</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-2 cbranch-no" title="branch not covered" >                case 3:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.savedCols = this._terminal.cols;</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.resize(132, this._terminal.rows);</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-3 cbranch-no" title="branch not covered" >                case 6:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.originMode = true;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 7:
+                    this._terminal.wraparoundMode = true;
+                    break;
+<span class="branch-5 cbranch-no" title="branch not covered" >                case 12:</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-6 cbranch-no" title="branch not covered" >                case 66:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.log('Serial port requested application keypad.');</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.applicationKeypad = true;</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.viewport.syncScrollArea();</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-7 cbranch-no" title="branch not covered" >                case 9:</span>
+<span class="branch-8 cbranch-no" title="branch not covered" >                case 1000:</span>
+<span class="branch-9 cbranch-no" title="branch not covered" >                case 1002:</span>
+<span class="branch-10 cbranch-no" title="branch not covered" >                case 1003:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.x10Mouse = params[0] === 9;</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.vt200Mouse = params[0] === 1000;</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.normalMouse = params[0] &gt; 1000;</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.mouseEvents = true;</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.element.classList.add('enable-mouse-events');</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.selectionManager.disable();</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.log('Binding to mouse events.');</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-11 cbranch-no" title="branch not covered" >                case 1004:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.sendFocus = true;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-12 cbranch-no" title="branch not covered" >                case 1005:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.utfMouse = true;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-13 cbranch-no" title="branch not covered" >                case 1006:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.sgrMouse = true;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-14 cbranch-no" title="branch not covered" >                case 1015:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.urxvtMouse = true;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-15 cbranch-no" title="branch not covered" >                case 25:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.cursorHidden = false;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-16 cbranch-no" title="branch not covered" >                case 1049:</span>
+<span class="branch-17 cbranch-no" title="branch not covered" >                case 47:</span>
+<span class="branch-18 cbranch-no" title="branch not covered" >                case 1047:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.buffers.activateAltBuffer();</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.viewport.syncScrollArea();</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.showCursor();</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 2004:
+                    this._terminal.bracketedPasteMode = true;
+                    break;
+            }
+        }
+    };
+    InputHandler.prototype.resetMode = function (params) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (params.length &gt; 1) {
+<span class="cstat-no" title="statement not covered" >            for (var i = 0; i &lt; params.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                this.resetMode([params[i]]);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!this._terminal.prefix) {
+<span class="cstat-no" title="statement not covered" >            switch (params[0]) {</span>
+                case 4:
+<span class="cstat-no" title="statement not covered" >                    this._terminal.insertMode = false;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 20:
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+            }
+        }
+        else <span class="missing-if-branch" title="else path not taken" >E</span>if (this._terminal.prefix === '?') {
+            switch (params[0]) {
+<span class="branch-0 cbranch-no" title="branch not covered" >                case 1:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.applicationCursor = false;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-1 cbranch-no" title="branch not covered" >                case 3:</span>
+<span class="cstat-no" title="statement not covered" >                    if (this._terminal.cols === 132 &amp;&amp; this._terminal.savedCols) {</span>
+<span class="cstat-no" title="statement not covered" >                        this._terminal.resize(this._terminal.savedCols, this._terminal.rows);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    delete this._terminal.savedCols;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-2 cbranch-no" title="branch not covered" >                case 6:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.originMode = false;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 7:
+                    this._terminal.wraparoundMode = false;
+                    break;
+<span class="branch-4 cbranch-no" title="branch not covered" >                case 12:</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-5 cbranch-no" title="branch not covered" >                case 66:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.log('Switching back to normal keypad.');</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.applicationKeypad = false;</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.viewport.syncScrollArea();</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-6 cbranch-no" title="branch not covered" >                case 9:</span>
+<span class="branch-7 cbranch-no" title="branch not covered" >                case 1000:</span>
+<span class="branch-8 cbranch-no" title="branch not covered" >                case 1002:</span>
+<span class="branch-9 cbranch-no" title="branch not covered" >                case 1003:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.x10Mouse = false;</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.vt200Mouse = false;</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.normalMouse = false;</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.mouseEvents = false;</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.element.classList.remove('enable-mouse-events');</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.selectionManager.enable();</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-10 cbranch-no" title="branch not covered" >                case 1004:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.sendFocus = false;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-11 cbranch-no" title="branch not covered" >                case 1005:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.utfMouse = false;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-12 cbranch-no" title="branch not covered" >                case 1006:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.sgrMouse = false;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-13 cbranch-no" title="branch not covered" >                case 1015:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.urxvtMouse = false;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-14 cbranch-no" title="branch not covered" >                case 25:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.cursorHidden = true;</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+<span class="branch-15 cbranch-no" title="branch not covered" >                case 1049:</span>
+<span class="branch-16 cbranch-no" title="branch not covered" >                case 47:</span>
+<span class="branch-17 cbranch-no" title="branch not covered" >                case 1047:</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.buffers.activateNormalBuffer();</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.refresh(0, this._terminal.rows - 1);</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.viewport.syncScrollArea();</span>
+<span class="cstat-no" title="statement not covered" >                    this._terminal.showCursor();</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 2004:
+                    this._terminal.bracketedPasteMode = false;
+                    break;
+            }
+        }
+    };
+    InputHandler.prototype.charAttributes = function (params) {
+        if (params.length === 1 &amp;&amp; params[0] === 0) {
+            this._terminal.curAttr = this._terminal.defAttr;
+            return;
+        }
+        var l = params.length;
+        var flags = this._terminal.curAttr &gt;&gt; 18;
+        var fg = (this._terminal.curAttr &gt;&gt; 9) &amp; 0x1ff;
+        var bg = this._terminal.curAttr &amp; 0x1ff;
+        var p;
+        for (var i = 0; i &lt; l; i++) {
+            p = params[i];
+            if (p &gt;= 30 &amp;&amp; p &lt;= 37) {
+                fg = p - 30;
+            }
+            else if (p &gt;= 40 &amp;&amp; p &lt;= 47) {
+                bg = p - 40;
+            }
+            else <span class="missing-if-branch" title="if path not taken" >I</span>if (p &gt;= 90 &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >p &lt;= 97)</span> {
+<span class="cstat-no" title="statement not covered" >                p += 8;</span>
+<span class="cstat-no" title="statement not covered" >                fg = p - 90;</span>
+            }
+            else <span class="missing-if-branch" title="if path not taken" >I</span>if (p &gt;= 100 &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >p &lt;= 107)</span> {
+<span class="cstat-no" title="statement not covered" >                p += 8;</span>
+<span class="cstat-no" title="statement not covered" >                bg = p - 100;</span>
+            }
+            else <span class="missing-if-branch" title="if path not taken" >I</span>if (p === 0) {
+<span class="cstat-no" title="statement not covered" >                flags = this._terminal.defAttr &gt;&gt; 18;</span>
+<span class="cstat-no" title="statement not covered" >                fg = (this._terminal.defAttr &gt;&gt; 9) &amp; 0x1ff;</span>
+<span class="cstat-no" title="statement not covered" >                bg = this._terminal.defAttr &amp; 0x1ff;</span>
+            }
+            else if (p === 1) {
+                flags |= Types_1.FLAGS.BOLD;
+            }
+            else <span class="missing-if-branch" title="if path not taken" >I</span>if (p === 4) {
+<span class="cstat-no" title="statement not covered" >                flags |= Types_1.FLAGS.UNDERLINE;</span>
+            }
+            else <span class="missing-if-branch" title="if path not taken" >I</span>if (p === 5) {
+<span class="cstat-no" title="statement not covered" >                flags |= Types_1.FLAGS.BLINK;</span>
+            }
+            else if (p === 7) {
+                flags |= Types_1.FLAGS.INVERSE;
+            }
+            else <span class="missing-if-branch" title="if path not taken" >I</span>if (p === 8) {
+<span class="cstat-no" title="statement not covered" >                flags |= Types_1.FLAGS.INVISIBLE;</span>
+            }
+            else <span class="missing-if-branch" title="if path not taken" >I</span>if (p === 2) {
+<span class="cstat-no" title="statement not covered" >                flags |= Types_1.FLAGS.DIM;</span>
+            }
+            else <span class="missing-if-branch" title="if path not taken" >I</span>if (p === 22) {
+<span class="cstat-no" title="statement not covered" >                flags &amp;= ~Types_1.FLAGS.BOLD;</span>
+<span class="cstat-no" title="statement not covered" >                flags &amp;= ~Types_1.FLAGS.DIM;</span>
+            }
+            else if (p === 24) {
+                flags &amp;= ~Types_1.FLAGS.UNDERLINE;
+            }
+            else <span class="missing-if-branch" title="if path not taken" >I</span>if (p === 25) {
+<span class="cstat-no" title="statement not covered" >                flags &amp;= ~Types_1.FLAGS.BLINK;</span>
+            }
+            else <span class="missing-if-branch" title="else path not taken" >E</span>if (p === 27) {
+                flags &amp;= ~Types_1.FLAGS.INVERSE;
+            }
+            else <span class="cstat-no" title="statement not covered" >if (p === 28) {</span>
+<span class="cstat-no" title="statement not covered" >                flags &amp;= ~Types_1.FLAGS.INVISIBLE;</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (p === 39) {</span>
+<span class="cstat-no" title="statement not covered" >                fg = (this._terminal.defAttr &gt;&gt; 9) &amp; 0x1ff;</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (p === 49) {</span>
+<span class="cstat-no" title="statement not covered" >                bg = this._terminal.defAttr &amp; 0x1ff;</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (p === 38) {</span>
+<span class="cstat-no" title="statement not covered" >                if (params[i + 1] === 2) {</span>
+<span class="cstat-no" title="statement not covered" >                    i += 2;</span>
+<span class="cstat-no" title="statement not covered" >                    fg = this._terminal.matchColor(params[i] &amp; 0xff, params[i + 1] &amp; 0xff, params[i + 2] &amp; 0xff);</span>
+<span class="cstat-no" title="statement not covered" >                    if (fg === -1)</span>
+<span class="cstat-no" title="statement not covered" >                        fg = 0x1ff;</span>
+<span class="cstat-no" title="statement not covered" >                    i += 2;</span>
+                }
+                else <span class="cstat-no" title="statement not covered" >if (params[i + 1] === 5) {</span>
+<span class="cstat-no" title="statement not covered" >                    i += 2;</span>
+<span class="cstat-no" title="statement not covered" >                    p = params[i] &amp; 0xff;</span>
+<span class="cstat-no" title="statement not covered" >                    fg = p;</span>
+                }
+            }
+            else <span class="cstat-no" title="statement not covered" >if (p === 48) {</span>
+<span class="cstat-no" title="statement not covered" >                if (params[i + 1] === 2) {</span>
+<span class="cstat-no" title="statement not covered" >                    i += 2;</span>
+<span class="cstat-no" title="statement not covered" >                    bg = this._terminal.matchColor(params[i] &amp; 0xff, params[i + 1] &amp; 0xff, params[i + 2] &amp; 0xff);</span>
+<span class="cstat-no" title="statement not covered" >                    if (bg === -1)</span>
+<span class="cstat-no" title="statement not covered" >                        bg = 0x1ff;</span>
+<span class="cstat-no" title="statement not covered" >                    i += 2;</span>
+                }
+                else <span class="cstat-no" title="statement not covered" >if (params[i + 1] === 5) {</span>
+<span class="cstat-no" title="statement not covered" >                    i += 2;</span>
+<span class="cstat-no" title="statement not covered" >                    p = params[i] &amp; 0xff;</span>
+<span class="cstat-no" title="statement not covered" >                    bg = p;</span>
+                }
+            }
+            else <span class="cstat-no" title="statement not covered" >if (p === 100) {</span>
+<span class="cstat-no" title="statement not covered" >                fg = (this._terminal.defAttr &gt;&gt; 9) &amp; 0x1ff;</span>
+<span class="cstat-no" title="statement not covered" >                bg = this._terminal.defAttr &amp; 0x1ff;</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                this._terminal.error('Unknown SGR attribute: %d.', p);</span>
+            }
+        }
+        this._terminal.curAttr = (flags &lt;&lt; 18) | (fg &lt;&lt; 9) | bg;
+    };
+    InputHandler.prototype.deviceStatus = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!this._terminal.prefix) {</span>
+<span class="cstat-no" title="statement not covered" >            switch (params[0]) {</span>
+                case 5:
+<span class="cstat-no" title="statement not covered" >                    this._terminal.send(EscapeSequences_1.C0.ESC + '[0n');</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 6:
+<span class="cstat-no" title="statement not covered" >                    this._terminal.send(EscapeSequences_1.C0.ESC + '['</span>
+                        + (this._terminal.buffer.y + 1)
+                        + ';'
+                        + (this._terminal.buffer.x + 1)
+                        + 'R');
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+            }
+        }
+        else <span class="cstat-no" title="statement not covered" >if (this._terminal.prefix === '?') {</span>
+<span class="cstat-no" title="statement not covered" >            switch (params[0]) {</span>
+                case 6:
+<span class="cstat-no" title="statement not covered" >                    this._terminal.send(EscapeSequences_1.C0.ESC + '[?'</span>
+                        + (this._terminal.buffer.y + 1)
+                        + ';'
+                        + (this._terminal.buffer.x + 1)
+                        + 'R');
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 15:
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 25:
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 26:
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 53:
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+            }
+        }
+    };
+    InputHandler.prototype.softReset = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.cursorHidden = false;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.insertMode = false;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.originMode = false;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.wraparoundMode = true;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.applicationKeypad = false;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.viewport.syncScrollArea();</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.applicationCursor = false;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.buffer.scrollTop = 0;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.buffer.scrollBottom = this._terminal.rows - 1;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.curAttr = this._terminal.defAttr;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.buffer.x = this._terminal.buffer.y = 0;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.charset = null;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.glevel = 0;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.charsets = [null];</span>
+    };
+    InputHandler.prototype.setCursorStyle = function (params) {
+        var param = params[0] &lt; 1 ? 1 : params[0];
+        switch (param) {
+            case 1:
+            case 2:
+                this._terminal.setOption('cursorStyle', 'block');
+                break;
+            case 3:
+            case 4:
+                this._terminal.setOption('cursorStyle', 'underline');
+                break;
+            case 5:
+            case 6:
+                this._terminal.setOption('cursorStyle', 'bar');
+                break;
+        }
+        var isBlinking = param % 2 === 1;
+        this._terminal.setOption('cursorBlink', isBlinking);
+    };
+    InputHandler.prototype.setScrollRegion = <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >        if (this._terminal.prefix)</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.buffer.scrollTop = (params[0] || 1) - 1;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.buffer.scrollBottom = (params[1] &amp;&amp; params[1] &lt;= this._terminal.rows ? params[1] : this._terminal.rows) - 1;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.buffer.x = 0;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.buffer.y = 0;</span>
+    };
+    InputHandler.prototype.saveCursor = function (params) {
+        this._terminal.buffer.savedX = this._terminal.buffer.x;
+        this._terminal.buffer.savedY = this._terminal.buffer.y;
+    };
+    InputHandler.prototype.restoreCursor = function (params) {
+        this._terminal.buffer.x = this._terminal.buffer.savedX || <span class="branch-1 cbranch-no" title="branch not covered" >0;</span>
+        this._terminal.buffer.y = this._terminal.buffer.savedY || <span class="branch-1 cbranch-no" title="branch not covered" >0;</span>
+    };
+    return InputHandler;
+}());
+exports.InputHandler = InputHandler;
+&nbsp;
+//# sourceMappingURL=InputHandler.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 19:51:20 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

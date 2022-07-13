@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/renderer/Renderer.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">lib/renderer/</a> Renderer.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">27.48% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>36/131</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">13.51% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>5/37</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.76% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/34</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">29.91% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>35/117</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var __extends = (this &amp;&amp; this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        (<span class="branch-1 cbranch-no" title="branch not covered" >{ __proto__: [] } instanceof Array </span>&amp;&amp; <span class="fstat-no" title="function not covered" ><span class="branch-2 cbranch-no" title="branch not covered" >function (d, b) {</span> <span class="cstat-no" title="statement not covered" >d.__proto__ = b; </span>})</span> ||
+<span class="fstat-no" title="function not covered" ><span class="branch-3 cbranch-no" title="branch not covered" >        function (d, b) {</span> <span class="cstat-no" title="statement not covered" >for (var p in b) <span class="cstat-no" title="statement not covered" >if (b.hasOwnProperty(p)) <span class="cstat-no" title="statement not covered" >d[p] = b[p]; </span></span></span>};</span>
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? <span class="branch-0 cbranch-no" title="branch not covered" >Object.create(b) </span>: (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var TextRenderLayer_1 = require("./TextRenderLayer");
+var SelectionRenderLayer_1 = require("./SelectionRenderLayer");
+var CursorRenderLayer_1 = require("./CursorRenderLayer");
+var ColorManager_1 = require("./ColorManager");
+var LinkRenderLayer_1 = require("./LinkRenderLayer");
+var EventEmitter_1 = require("../EventEmitter");
+var RenderDebouncer_1 = require("../utils/RenderDebouncer");
+var ScreenDprMonitor_1 = require("../utils/ScreenDprMonitor");
+var Renderer = (function (_super) {
+    __extends(Renderer, _super);
+<span class="fstat-no" title="function not covered" >    function Renderer(_terminal, theme) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = _super.call(this) || this;</span>
+<span class="cstat-no" title="statement not covered" >        _this._terminal = _terminal;</span>
+<span class="cstat-no" title="statement not covered" >        _this._isPaused = false;</span>
+<span class="cstat-no" title="statement not covered" >        _this._needsFullRefresh = false;</span>
+<span class="cstat-no" title="statement not covered" >        _this.colorManager = new ColorManager_1.ColorManager(document);</span>
+<span class="cstat-no" title="statement not covered" >        if (theme) {</span>
+<span class="cstat-no" title="statement not covered" >            _this.colorManager.setTheme(theme);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        _this._renderLayers = [</span>
+            new TextRenderLayer_1.TextRenderLayer(_this._terminal.screenElement, 0, _this.colorManager.colors, _this._terminal.options.allowTransparency),
+            new SelectionRenderLayer_1.SelectionRenderLayer(_this._terminal.screenElement, 1, _this.colorManager.colors),
+            new LinkRenderLayer_1.LinkRenderLayer(_this._terminal.screenElement, 2, _this.colorManager.colors, _this._terminal),
+            new CursorRenderLayer_1.CursorRenderLayer(_this._terminal.screenElement, 3, _this.colorManager.colors)
+        ];
+<span class="cstat-no" title="statement not covered" >        _this.dimensions = {</span>
+            scaledCharWidth: null,
+            scaledCharHeight: null,
+            scaledCellWidth: null,
+            scaledCellHeight: null,
+            scaledCharLeft: null,
+            scaledCharTop: null,
+            scaledCanvasWidth: null,
+            scaledCanvasHeight: null,
+            canvasWidth: null,
+            canvasHeight: null,
+            actualCellWidth: null,
+            actualCellHeight: null
+        };
+<span class="cstat-no" title="statement not covered" >        _this._devicePixelRatio = window.devicePixelRatio;</span>
+<span class="cstat-no" title="statement not covered" >        _this._updateDimensions();</span>
+<span class="cstat-no" title="statement not covered" >        _this.onOptionsChanged();</span>
+<span class="cstat-no" title="statement not covered" >        _this._renderDebouncer = new RenderDebouncer_1.RenderDebouncer(_this._terminal, _this._renderRows.bind(_this));</span>
+<span class="cstat-no" title="statement not covered" >        _this._screenDprMonitor = new ScreenDprMonitor_1.ScreenDprMonitor();</span>
+<span class="cstat-no" title="statement not covered" >        _this._screenDprMonitor.setListener(<span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return _this.onWindowResize(window.devicePixelRatio); </span>});</span>
+<span class="cstat-no" title="statement not covered" >        if ('IntersectionObserver' in window) {</span>
+<span class="cstat-no" title="statement not covered" >            var observer = new IntersectionObserver(<span class="fstat-no" title="function not covered" >function (e) {</span> <span class="cstat-no" title="statement not covered" >return _this.onIntersectionChange(e[0]); </span>}, { threshold: 0 });</span>
+<span class="cstat-no" title="statement not covered" >            observer.observe(_this._terminal.element);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return _this;</span>
+    }
+    Renderer.prototype.onIntersectionChange = <span class="fstat-no" title="function not covered" >function (entry) {</span>
+<span class="cstat-no" title="statement not covered" >        this._isPaused = entry.intersectionRatio === 0;</span>
+<span class="cstat-no" title="statement not covered" >        if (!this._isPaused &amp;&amp; this._needsFullRefresh) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.refresh(0, this._terminal.rows - 1);</span>
+        }
+    };
+    Renderer.prototype.onWindowResize = <span class="fstat-no" title="function not covered" >function (devicePixelRatio) {</span>
+<span class="cstat-no" title="statement not covered" >        if (this._devicePixelRatio !== devicePixelRatio) {</span>
+<span class="cstat-no" title="statement not covered" >            this._devicePixelRatio = devicePixelRatio;</span>
+<span class="cstat-no" title="statement not covered" >            this.onResize(this._terminal.cols, this._terminal.rows);</span>
+        }
+    };
+    Renderer.prototype.setTheme = <span class="fstat-no" title="function not covered" >function (theme) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this.colorManager.setTheme(theme);</span>
+<span class="cstat-no" title="statement not covered" >        this._renderLayers.forEach(<span class="fstat-no" title="function not covered" >function (l) {</span></span>
+<span class="cstat-no" title="statement not covered" >            l.onThemeChanged(_this._terminal, _this.colorManager.colors);</span>
+<span class="cstat-no" title="statement not covered" >            l.reset(_this._terminal);</span>
+        });
+<span class="cstat-no" title="statement not covered" >        if (this._isPaused) {</span>
+<span class="cstat-no" title="statement not covered" >            this._needsFullRefresh = true;</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            this._terminal.refresh(0, this._terminal.rows - 1);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return this.colorManager.colors;</span>
+    };
+    Renderer.prototype.onResize = <span class="fstat-no" title="function not covered" >function (cols, rows) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._updateDimensions();</span>
+<span class="cstat-no" title="statement not covered" >        this._renderLayers.forEach(<span class="fstat-no" title="function not covered" >function (l) {</span> <span class="cstat-no" title="statement not covered" >return l.resize(_this._terminal, _this.dimensions); </span>});</span>
+<span class="cstat-no" title="statement not covered" >        if (this._isPaused) {</span>
+<span class="cstat-no" title="statement not covered" >            this._needsFullRefresh = true;</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            this._terminal.refresh(0, this._terminal.rows - 1);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._terminal.screenElement.style.width = this.dimensions.canvasWidth + "px";</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.screenElement.style.height = this.dimensions.canvasHeight + "px";</span>
+<span class="cstat-no" title="statement not covered" >        this.emit('resize', {</span>
+            width: this.dimensions.canvasWidth,
+            height: this.dimensions.canvasHeight
+        });
+    };
+    Renderer.prototype.onCharSizeChanged = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.onResize(this._terminal.cols, this._terminal.rows);</span>
+    };
+    Renderer.prototype.onBlur = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._runOperation(<span class="fstat-no" title="function not covered" >function (l) {</span> <span class="cstat-no" title="statement not covered" >return l.onBlur(_this._terminal); </span>});</span>
+    };
+    Renderer.prototype.onFocus = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._runOperation(<span class="fstat-no" title="function not covered" >function (l) {</span> <span class="cstat-no" title="statement not covered" >return l.onFocus(_this._terminal); </span>});</span>
+    };
+    Renderer.prototype.onSelectionChanged = <span class="fstat-no" title="function not covered" >function (start, end) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._runOperation(<span class="fstat-no" title="function not covered" >function (l) {</span> <span class="cstat-no" title="statement not covered" >return l.onSelectionChanged(_this._terminal, start, end); </span>});</span>
+    };
+    Renderer.prototype.onCursorMove = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._runOperation(<span class="fstat-no" title="function not covered" >function (l) {</span> <span class="cstat-no" title="statement not covered" >return l.onCursorMove(_this._terminal); </span>});</span>
+    };
+    Renderer.prototype.onOptionsChanged = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._runOperation(<span class="fstat-no" title="function not covered" >function (l) {</span> <span class="cstat-no" title="statement not covered" >return l.onOptionsChanged(_this._terminal); </span>});</span>
+    };
+    Renderer.prototype.clear = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._runOperation(<span class="fstat-no" title="function not covered" >function (l) {</span> <span class="cstat-no" title="statement not covered" >return l.reset(_this._terminal); </span>});</span>
+    };
+    Renderer.prototype._runOperation = <span class="fstat-no" title="function not covered" >function (operation) {</span>
+<span class="cstat-no" title="statement not covered" >        if (this._isPaused) {</span>
+<span class="cstat-no" title="statement not covered" >            this._needsFullRefresh = true;</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            this._renderLayers.forEach(<span class="fstat-no" title="function not covered" >function (l) {</span> <span class="cstat-no" title="statement not covered" >return operation(l); </span>});</span>
+        }
+    };
+    Renderer.prototype.refreshRows = <span class="fstat-no" title="function not covered" >function (start, end) {</span>
+<span class="cstat-no" title="statement not covered" >        if (this._isPaused) {</span>
+<span class="cstat-no" title="statement not covered" >            this._needsFullRefresh = true;</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._renderDebouncer.refresh(start, end);</span>
+    };
+    Renderer.prototype._renderRows = <span class="fstat-no" title="function not covered" >function (start, end) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._renderLayers.forEach(<span class="fstat-no" title="function not covered" >function (l) {</span> <span class="cstat-no" title="statement not covered" >return l.onGridChanged(_this._terminal, start, end); </span>});</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal.emit('refresh', { start: start, end: end });</span>
+    };
+    Renderer.prototype._updateDimensions = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (!this._terminal.charMeasure.width || !this._terminal.charMeasure.height) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this.dimensions.scaledCharWidth = Math.floor(this._terminal.charMeasure.width * window.devicePixelRatio);</span>
+<span class="cstat-no" title="statement not covered" >        this.dimensions.scaledCharHeight = Math.ceil(this._terminal.charMeasure.height * window.devicePixelRatio);</span>
+<span class="cstat-no" title="statement not covered" >        this.dimensions.scaledCellHeight = Math.floor(this.dimensions.scaledCharHeight * this._terminal.options.lineHeight);</span>
+<span class="cstat-no" title="statement not covered" >        this.dimensions.scaledCharTop = this._terminal.options.lineHeight === 1 ? 0 : Math.round((this.dimensions.scaledCellHeight - this.dimensions.scaledCharHeight) / 2);</span>
+<span class="cstat-no" title="statement not covered" >        this.dimensions.scaledCellWidth = this.dimensions.scaledCharWidth + Math.round(this._terminal.options.letterSpacing);</span>
+<span class="cstat-no" title="statement not covered" >        this.dimensions.scaledCharLeft = Math.floor(this._terminal.options.letterSpacing / 2);</span>
+<span class="cstat-no" title="statement not covered" >        this.dimensions.scaledCanvasHeight = this._terminal.rows * this.dimensions.scaledCellHeight;</span>
+<span class="cstat-no" title="statement not covered" >        this.dimensions.scaledCanvasWidth = this._terminal.cols * this.dimensions.scaledCellWidth;</span>
+<span class="cstat-no" title="statement not covered" >        this.dimensions.canvasHeight = Math.round(this.dimensions.scaledCanvasHeight / window.devicePixelRatio);</span>
+<span class="cstat-no" title="statement not covered" >        this.dimensions.canvasWidth = Math.round(this.dimensions.scaledCanvasWidth / window.devicePixelRatio);</span>
+<span class="cstat-no" title="statement not covered" >        this.dimensions.actualCellHeight = this.dimensions.canvasHeight / this._terminal.rows;</span>
+<span class="cstat-no" title="statement not covered" >        this.dimensions.actualCellWidth = this.dimensions.canvasWidth / this._terminal.cols;</span>
+    };
+    return Renderer;
+}(EventEmitter_1.EventEmitter));
+exports.Renderer = Renderer;
+&nbsp;
+//# sourceMappingURL=Renderer.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 19:51:20 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

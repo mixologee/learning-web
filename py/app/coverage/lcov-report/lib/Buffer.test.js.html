@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/Buffer.test.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">lib/</a> Buffer.test.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>120/120</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>27/27</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>120/120</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">1920×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var chai_1 = require("chai");
+var Buffer_1 = require("./Buffer");
+var CircularList_1 = require("./utils/CircularList");
+var TestUtils_test_1 = require("./utils/TestUtils.test");
+var INIT_COLS = 80;
+var INIT_ROWS = 24;
+describe('Buffer', function () {
+    var terminal;
+    var buffer;
+    beforeEach(function () {
+        terminal = new TestUtils_test_1.MockTerminal();
+        terminal.cols = INIT_COLS;
+        terminal.rows = INIT_ROWS;
+        terminal.options.scrollback = 1000;
+        buffer = new Buffer_1.Buffer(terminal, true);
+    });
+    describe('constructor', function () {
+        it('should create a CircularList with max length equal to rows + scrollback, for its lines', function () {
+            chai_1.assert.instanceOf(buffer.lines, CircularList_1.CircularList);
+            chai_1.assert.equal(buffer.lines.maxLength, terminal.rows + terminal.options.scrollback);
+        });
+        it('should set the Buffer\'s scrollBottom value equal to the terminal\'s rows -1', function () {
+            chai_1.assert.equal(buffer.scrollBottom, terminal.rows - 1);
+        });
+    });
+    describe('fillViewportRows', function () {
+        it('should fill the buffer with blank lines based on the size of the viewport', function () {
+            var blankLineChar = terminal.blankLine()[0];
+            buffer.fillViewportRows();
+            chai_1.assert.equal(buffer.lines.length, INIT_ROWS);
+            for (var y = 0; y &lt; INIT_ROWS; y++) {
+                chai_1.assert.equal(buffer.lines.get(y).length, INIT_COLS);
+                for (var x = 0; x &lt; INIT_COLS; x++) {
+                    chai_1.assert.deepEqual(buffer.lines.get(y)[x], blankLineChar);
+                }
+            }
+        });
+    });
+    describe('resize', function () {
+        describe('column size is reduced', function () {
+            it('should not trim the data in the buffer', function () {
+                buffer.fillViewportRows();
+                buffer.resize(INIT_COLS / 2, INIT_ROWS);
+                chai_1.assert.equal(buffer.lines.length, INIT_ROWS);
+                for (var i = 0; i &lt; INIT_ROWS; i++) {
+                    chai_1.assert.equal(buffer.lines.get(i).length, INIT_COLS);
+                }
+            });
+        });
+        describe('column size is increased', function () {
+            it('should add pad columns', function () {
+                buffer.fillViewportRows();
+                buffer.resize(INIT_COLS + 10, INIT_ROWS);
+                chai_1.assert.equal(buffer.lines.length, INIT_ROWS);
+                for (var i = 0; i &lt; INIT_ROWS; i++) {
+                    chai_1.assert.equal(buffer.lines.get(i).length, INIT_COLS + 10);
+                }
+            });
+        });
+        describe('row size reduced', function () {
+            it('should trim blank lines from the end', function () {
+                buffer.fillViewportRows();
+                buffer.resize(INIT_COLS, INIT_ROWS - 10);
+                chai_1.assert.equal(buffer.lines.length, INIT_ROWS - 10);
+            });
+            it('should move the viewport down when it\'s at the end', function () {
+                buffer.fillViewportRows();
+                buffer.y = INIT_ROWS - 5 - 1;
+                buffer.resize(INIT_COLS, INIT_ROWS - 10);
+                chai_1.assert.equal(buffer.lines.length, INIT_ROWS - 5);
+                chai_1.assert.equal(buffer.ydisp, 5);
+                chai_1.assert.equal(buffer.ybase, 5);
+            });
+            describe('no scrollback', function () {
+                it('should trim from the top of the buffer when the cursor reaches the bottom', function () {
+                    terminal.options.scrollback = 0;
+                    buffer = new Buffer_1.Buffer(terminal, true);
+                    chai_1.assert.equal(buffer.lines.maxLength, INIT_ROWS);
+                    buffer.y = INIT_ROWS - 1;
+                    buffer.fillViewportRows();
+                    buffer.lines.get(5)[0][1] = 'a';
+                    buffer.lines.get(INIT_ROWS - 1)[0][1] = 'b';
+                    buffer.resize(INIT_COLS, INIT_ROWS - 5);
+                    chai_1.assert.equal(buffer.lines.get(0)[0][1], 'a');
+                    chai_1.assert.equal(buffer.lines.get(INIT_ROWS - 1 - 5)[0][1], 'b');
+                });
+            });
+        });
+        describe('row size increased', function () {
+            describe('empty buffer', function () {
+                it('should add blank lines to end', function () {
+                    buffer.fillViewportRows();
+                    chai_1.assert.equal(buffer.ydisp, 0);
+                    buffer.resize(INIT_COLS, INIT_ROWS + 10);
+                    chai_1.assert.equal(buffer.ydisp, 0);
+                    chai_1.assert.equal(buffer.lines.length, INIT_ROWS + 10);
+                });
+            });
+            describe('filled buffer', function () {
+                it('should show more of the buffer above', function () {
+                    buffer.fillViewportRows();
+                    for (var i = 0; i &lt; 10; i++) {
+                        buffer.lines.push(terminal.blankLine());
+                    }
+                    buffer.y = INIT_ROWS - 1;
+                    buffer.ybase = 10;
+                    buffer.ydisp = 10;
+                    chai_1.assert.equal(buffer.lines.length, INIT_ROWS + 10);
+                    buffer.resize(INIT_COLS, INIT_ROWS + 5);
+                    chai_1.assert.equal(buffer.ydisp, 5);
+                    chai_1.assert.equal(buffer.ybase, 5);
+                    chai_1.assert.equal(buffer.lines.length, INIT_ROWS + 10);
+                });
+                it('should show more of the buffer below when the viewport is at the top of the buffer', function () {
+                    buffer.fillViewportRows();
+                    for (var i = 0; i &lt; 10; i++) {
+                        buffer.lines.push(terminal.blankLine());
+                    }
+                    buffer.y = INIT_ROWS - 1;
+                    buffer.ybase = 10;
+                    buffer.ydisp = 0;
+                    chai_1.assert.equal(buffer.lines.length, INIT_ROWS + 10);
+                    buffer.resize(INIT_COLS, INIT_ROWS + 5);
+                    chai_1.assert.equal(buffer.ydisp, 0);
+                    chai_1.assert.equal(buffer.ybase, 5);
+                    chai_1.assert.equal(buffer.lines.length, INIT_ROWS + 10);
+                });
+            });
+        });
+        describe('row and column increased', function () {
+            it('should resize properly', function () {
+                buffer.fillViewportRows();
+                buffer.resize(INIT_COLS + 5, INIT_ROWS + 5);
+                chai_1.assert.equal(buffer.lines.length, INIT_ROWS + 5);
+                for (var i = 0; i &lt; INIT_ROWS + 5; i++) {
+                    chai_1.assert.equal(buffer.lines.get(i).length, INIT_COLS + 5);
+                }
+            });
+        });
+    });
+    describe('buffer marked to have no scrollback', function () {
+        it('should always have a scrollback of 0', function () {
+            chai_1.assert.equal(terminal.options.scrollback, 1000);
+            buffer = new Buffer_1.Buffer(terminal, false);
+            buffer.fillViewportRows();
+            chai_1.assert.equal(buffer.lines.maxLength, INIT_ROWS);
+            buffer.resize(INIT_COLS, INIT_ROWS * 2);
+            chai_1.assert.equal(buffer.lines.maxLength, INIT_ROWS * 2);
+            buffer.resize(INIT_COLS, INIT_ROWS / 2);
+            chai_1.assert.equal(buffer.lines.maxLength, INIT_ROWS / 2);
+        });
+    });
+});
+&nbsp;
+//# sourceMappingURL=Buffer.test.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 19:51:20 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

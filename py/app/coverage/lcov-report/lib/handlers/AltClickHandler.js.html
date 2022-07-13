@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/handlers/AltClickHandler.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">lib/handlers/</a> AltClickHandler.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">24.51% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>25/102</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.88% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/41</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.76% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">24.51% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>25/102</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var EscapeSequences_1 = require("../EscapeSequences");
+var Direction;
+(function (Direction) {
+    Direction["Up"] = "A";
+    Direction["Down"] = "B";
+    Direction["Right"] = "C";
+    Direction["Left"] = "D";
+})(Direction || (Direction = {}));
+var AltClickHandler = (function () {
+<span class="fstat-no" title="function not covered" >    function AltClickHandler(_mouseEvent, _terminal) {</span>
+<span class="cstat-no" title="statement not covered" >        this._mouseEvent = _mouseEvent;</span>
+<span class="cstat-no" title="statement not covered" >        this._terminal = _terminal;</span>
+<span class="cstat-no" title="statement not covered" >        this._lines = this._terminal.buffer.lines;</span>
+<span class="cstat-no" title="statement not covered" >        this._startCol = this._terminal.buffer.x;</span>
+<span class="cstat-no" title="statement not covered" >        this._startRow = this._terminal.buffer.y;</span>
+<span class="cstat-no" title="statement not covered" >        _a = this._terminal.mouseHelper.getCoords(this._mouseEvent, this._terminal.element, this._terminal.charMeasure, this._terminal.options.lineHeight, this._terminal.cols, this._terminal.rows, false).map(<span class="fstat-no" title="function not covered" >function (coordinate) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return coordinate - 1;</span>
+        }), this._endCol = _a[0], this._endRow = _a[1];
+<span class="cstat-no" title="statement not covered" >        var _a;</span>
+    }
+    AltClickHandler.prototype.move = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this._mouseEvent.altKey) {</span>
+<span class="cstat-no" title="statement not covered" >            this._terminal.send(this._arrowSequences());</span>
+        }
+    };
+    AltClickHandler.prototype._arrowSequences = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (!this._terminal.buffer.hasScrollback) {</span>
+<span class="cstat-no" title="statement not covered" >            return this._resetStartingRow() + this._moveToRequestedRow() + this._moveToRequestedCol();</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return this._moveHorizontallyOnly();</span>
+    };
+    AltClickHandler.prototype._resetStartingRow = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this._moveToRequestedRow().length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >            return '';</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            return repeat(this._bufferLine(this._startCol, this._startRow, this._startCol, this._startRow - this._wrappedRowsForRow(this._startRow), false).length, this._sequence(Direction.Left));</span>
+        }
+    };
+    AltClickHandler.prototype._moveToRequestedRow = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var startRow = this._startRow - this._wrappedRowsForRow(this._startRow);</span>
+<span class="cstat-no" title="statement not covered" >        var endRow = this._endRow - this._wrappedRowsForRow(this._endRow);</span>
+<span class="cstat-no" title="statement not covered" >        var rowsToMove = Math.abs(startRow - endRow) - this._wrappedRowsCount();</span>
+<span class="cstat-no" title="statement not covered" >        return repeat(rowsToMove, this._sequence(this._verticalDirection()));</span>
+    };
+    AltClickHandler.prototype._moveToRequestedCol = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var startRow;</span>
+<span class="cstat-no" title="statement not covered" >        if (this._moveToRequestedRow().length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            startRow = this._endRow - this._wrappedRowsForRow(this._endRow);</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            startRow = this._startRow;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var endRow = this._endRow;</span>
+<span class="cstat-no" title="statement not covered" >        var direction = this._horizontalDirection();</span>
+<span class="cstat-no" title="statement not covered" >        return repeat(this._bufferLine(this._startCol, startRow, this._endCol, endRow, direction === Direction.Right).length, this._sequence(direction));</span>
+    };
+    AltClickHandler.prototype._moveHorizontallyOnly = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var direction = this._horizontalDirection();</span>
+<span class="cstat-no" title="statement not covered" >        return repeat(Math.abs(this._startCol - this._endCol), this._sequence(direction));</span>
+    };
+    AltClickHandler.prototype._wrappedRowsCount = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var wrappedRows = 0;</span>
+<span class="cstat-no" title="statement not covered" >        var startRow = this._startRow - this._wrappedRowsForRow(this._startRow);</span>
+<span class="cstat-no" title="statement not covered" >        var endRow = this._endRow - this._wrappedRowsForRow(this._endRow);</span>
+<span class="cstat-no" title="statement not covered" >        for (var i = 0; i &lt; Math.abs(startRow - endRow); i++) {</span>
+<span class="cstat-no" title="statement not covered" >            var direction = this._verticalDirection() === Direction.Up ? -1 : 1;</span>
+<span class="cstat-no" title="statement not covered" >            if (this._lines.get(startRow + (direction * i)).isWrapped) {</span>
+<span class="cstat-no" title="statement not covered" >                wrappedRows++;</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        return wrappedRows;</span>
+    };
+    AltClickHandler.prototype._wrappedRowsForRow = <span class="fstat-no" title="function not covered" >function (currentRow) {</span>
+<span class="cstat-no" title="statement not covered" >        var rowCount = 0;</span>
+<span class="cstat-no" title="statement not covered" >        var lineWraps = this._lines.get(currentRow).isWrapped;</span>
+<span class="cstat-no" title="statement not covered" >        while (lineWraps &amp;&amp; currentRow &gt;= 0 &amp;&amp; currentRow &lt; this._terminal.rows) {</span>
+<span class="cstat-no" title="statement not covered" >            rowCount++;</span>
+<span class="cstat-no" title="statement not covered" >            currentRow--;</span>
+<span class="cstat-no" title="statement not covered" >            lineWraps = this._lines.get(currentRow).isWrapped;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return rowCount;</span>
+    };
+    AltClickHandler.prototype._horizontalDirection = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var startRow;</span>
+<span class="cstat-no" title="statement not covered" >        if (this._moveToRequestedRow().length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            startRow = this._endRow - this._wrappedRowsForRow(this._endRow);</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            startRow = this._startRow;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if ((this._startCol &lt; this._endCol &amp;&amp;</span>
+            startRow &lt;= this._endRow) ||
+            (this._startCol &gt;= this._endCol &amp;&amp;
+                startRow &lt; this._endRow)) {
+<span class="cstat-no" title="statement not covered" >            return Direction.Right;</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            return Direction.Left;</span>
+        }
+    };
+    AltClickHandler.prototype._verticalDirection = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this._startRow &gt; this._endRow) {</span>
+<span class="cstat-no" title="statement not covered" >            return Direction.Up;</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            return Direction.Down;</span>
+        }
+    };
+    AltClickHandler.prototype._bufferLine = <span class="fstat-no" title="function not covered" >function (startCol, startRow, endCol, endRow, forward) {</span>
+<span class="cstat-no" title="statement not covered" >        var currentCol = startCol;</span>
+<span class="cstat-no" title="statement not covered" >        var currentRow = startRow;</span>
+<span class="cstat-no" title="statement not covered" >        var bufferStr = '';</span>
+<span class="cstat-no" title="statement not covered" >        while (currentCol !== endCol || currentRow !== endRow) {</span>
+<span class="cstat-no" title="statement not covered" >            currentCol += forward ? 1 : -1;</span>
+<span class="cstat-no" title="statement not covered" >            if (forward &amp;&amp; currentCol &gt; this._terminal.cols - 1) {</span>
+<span class="cstat-no" title="statement not covered" >                bufferStr += this._terminal.buffer.translateBufferLineToString(currentRow, false, startCol, currentCol);</span>
+<span class="cstat-no" title="statement not covered" >                currentCol = 0;</span>
+<span class="cstat-no" title="statement not covered" >                startCol = 0;</span>
+<span class="cstat-no" title="statement not covered" >                currentRow++;</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (!forward &amp;&amp; currentCol &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                bufferStr += this._terminal.buffer.translateBufferLineToString(currentRow, false, 0, startCol + 1);</span>
+<span class="cstat-no" title="statement not covered" >                currentCol = this._terminal.cols - 1;</span>
+<span class="cstat-no" title="statement not covered" >                startCol = currentCol;</span>
+<span class="cstat-no" title="statement not covered" >                currentRow--;</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        return bufferStr + this._terminal.buffer.translateBufferLineToString(currentRow, false, startCol, currentCol);</span>
+    };
+    AltClickHandler.prototype._sequence = <span class="fstat-no" title="function not covered" >function (direction) {</span>
+<span class="cstat-no" title="statement not covered" >        var mod = this._terminal.applicationCursor ? 'O' : '[';</span>
+<span class="cstat-no" title="statement not covered" >        return EscapeSequences_1.C0.ESC + mod + direction;</span>
+    };
+    return AltClickHandler;
+}());
+exports.AltClickHandler = AltClickHandler;
+<span class="fstat-no" title="function not covered" >function repeat(count, str) {</span>
+<span class="cstat-no" title="statement not covered" >    count = Math.floor(count);</span>
+<span class="cstat-no" title="statement not covered" >    var rpt = '';</span>
+<span class="cstat-no" title="statement not covered" >    for (var i = 0; i &lt; count; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        rpt += str;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return rpt;</span>
+}
+&nbsp;
+//# sourceMappingURL=AltClickHandler.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 23 2018 19:51:20 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+[
+{
+	"topic": "01. Hello World",
+ 	"name": "Hello World",
+	"text": [
+		"<p>Welcome to Learning Java @ BlackRock!</p>",
+                "<p>Lesson 1</p>",
+                "<p>Let's get started....</p>",
+                "<p>In the console, type: </p>",
+                "<p class='codeText'> cd ~/work</br>mkdir HelloWorld</br>cd HelloWorld</p>",
+                "<p>Now we have our working directory. Now , lets create our code file: </p>",
+                "<p class='codeText'>vim HelloWorld.java</p>",
+                "<p>Type i to begin editing the file. Now, type the following:</p>",
+                "<p  class='codeText'>public class HelloWorld {</br>   public static void main(String[] args) {</br>      // Prints \"Hello, World\" in the terminal window.</br>      System.out.println(\"Hello, World\");</br>   }</br>}</p>",
+                "<p>Now save the file by hitting ESC key typing: :wq!</p>",
+                "<p>Now you can compile your program by typing:</p>",
+                "<p  class='codeText'>javac HelloWorld.java</p>",
+		"Once compiled, you can run the program as follows:",
+		"<p  class='codeText'>java HelloWorld</p>",
+                "<p>You should see Hello World returned.</p>",
+                "<p style='color:green;'>Congratulations! You have started learning Go!</p>"
+ 		]		
+},
+{
+	"topic": "02. Types",
+        "name": "Introducing Types",
+        "text": [
+		"<p>Lesson 2 - Introducing Types</p>",
+		"<p>Let's get started....</p>",
+		"<p>In the console, type: </p>",
+		"<p class='codeText'>cd ~/work</br>mkdir IntroTypes</br></p>",
+		"<p>Now we have our working directory. Now , lets create our code file: </p>",
+		"<p class='codeText'>vim IntroTypes.java</p>",
+		"<p>Type i to begin editing the file. Now, type the following:</p>",
+		"<p  class='codeText'>public class IntroTypes {</br>   public static void main(String[] args) {</br>        String myString = \"What is the secret to the universe?\";</br>        int myNumber = 42;</br>        System.out.println(myString);</br>        System.out.println(myNumber);</br>   }</br>}</p>",
+		"<p>Now save the file by hitting ESC key typing: :wq!</p>",
+		"<p>Now you can compile your program by typing:</p>",
+		"<p  class='codeText'>javac IntroTypes.java</p>",
+		"<p>Now you can run your program by typing:</p>",
+		"<p  class='codeText'>java IntroTypes</p>",
+		"<p>You should see</br>What is the secret of the universe?</br>42</br>returned.</p>",
+		"<p>You can also compile the code and run by command as follows:</p>",
+		"<p  class='codeText'>java IntroTypes</br>./main</p>",
+		"<p style='color:green;'>Congratulations! You have started working with data types!</p>"
+                ]
+}
+]
+
